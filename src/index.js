@@ -64,7 +64,7 @@ function QuoteList ({ quotes }) {
       <ul>
         {
           quotes.map(quote => (
-            <li>
+            <li key={quote.id}>
               <em>{ quote.body }</em> - {quote.author.name}
             </li>
           ))
@@ -94,8 +94,10 @@ function AuthorList ({ authors }) {
 function App () {
   return (
     <ApolloProvider client={client}>
-      <Authors />
-      <Quotes />
+      <div>
+        <Authors />
+        <Quotes />
+      </div>
     </ApolloProvider>
   )
 }
