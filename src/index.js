@@ -31,23 +31,63 @@ function Authors () {
   )
 }
 
-function AuthorList ({ authors }) {
+function Quotes () {
   return (
-    <ul>
-      {
-        authors.map((author) => (
-          <li key={author.id}>
-            <Author name={author.name} />
-          </li>
-        ))
-      }
-    </ul>
+    <Query
+      query={gql`
+        {
+          allQuotes {
+            id
+            body
+            author {
+              id
+              name
+            }
+          }
+        }
+      `}
+    >
+      {({ loading, error, data }) => {
+        if (loading) return <p>Loading...</p>
+        if (error) return <p>Error :(</p>
+
+        return <QuoteList quotes={data.allQuotes} />
+      }}
+    </Query>
   )
 }
 
-function Author ({ name }) {
+function QuoteList ({ quotes }) {
   return (
-    <p>{ name }</p>
+    <section>
+      <h2>All Quotes</h2>
+      <ul>
+        {
+          quotes.map(quote => (
+            <li>
+              <em>{ quote.body }</em> - {quote.author.name}
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+  )
+}
+
+function AuthorList ({ authors }) {
+  return (
+    <section>
+      <h2>All Authors</h2>
+      <ul>
+        {
+          authors.map((author) => (
+            <li key={author.id}>
+              <p>{ author.name }</p>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
   )
 }
 
@@ -55,6 +95,7 @@ function App () {
   return (
     <ApolloProvider client={client}>
       <Authors />
+      <Quotes />
     </ApolloProvider>
   )
 }
