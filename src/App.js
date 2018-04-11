@@ -5,7 +5,7 @@ export default function App ({ children }) {
   return (
     <div>
       <Header />
-      <main>{children}</main>
+      {children}
     </div>
   )
 }
