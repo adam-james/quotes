@@ -8,6 +8,7 @@ const GET_AUTHOR = gql`
     Author(id: $id) {
       name
       quotes {
+        id
         body
       }
     }
@@ -18,11 +19,16 @@ function AuthorDetailPage ({ match }) {
   const { id } = match.params
   return (
     <Query query={GET_AUTHOR} variables={{ id }}>
-      {({ loading, error, data }) => {
+      {({ loading, error, data, refetch }) => {
         if (loading) return <p>Loading...</p>
         if (error) return <p>Error :(</p>
 
-        return <ShowAuthor author={data.Author} />
+        return (
+          <main>
+            <button onClick={() => refetch()}>Refetch</button>
+            <ShowAuthor author={data.Author} />
+          </main>
+        )
       }}
     </Query>
   )
@@ -30,10 +36,10 @@ function AuthorDetailPage ({ match }) {
 
 function ShowAuthor ({ author }) {
   return (
-    <main>
+    <section>
       <h2>{author.name}</h2>
       <QuoteList quotes={author.quotes} />
-    </main>
+    </section>
   )
 }
 
