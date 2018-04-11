@@ -1,23 +1,24 @@
 import React from 'react'
 import { Query } from 'react-apollo'
 import gql from 'graphql-tag'
+import { Link } from 'react-router-dom'
+
+const ALL_QUOTES = gql`
+  {
+    allQuotes {
+      id
+      body
+      author {
+        id
+        name
+      }
+    }
+  }
+`
 
 export default function QuoteListPage () {
   return (
-    <Query
-      query={gql`
-        {
-          allQuotes {
-            id
-            body
-            author {
-              id
-              name
-            }
-          }
-        }
-      `}
-    >
+    <Query query={ALL_QUOTES}>
       {({ loading, error, data }) => {
         if (loading) return <p>Loading...</p>
         if (error) return <p>Error :(</p>
@@ -36,7 +37,10 @@ function QuoteList ({ quotes }) {
         {
           quotes.map(quote => (
             <li key={quote.id}>
-              <em>{ quote.body }</em> - {quote.author.name}
+              <em>{quote.body}</em> -
+              <Link to={`/authors/${quote.author.id}`}>
+                {quote.author.name}
+              </Link>
             </li>
           ))
         }
