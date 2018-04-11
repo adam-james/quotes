@@ -37,7 +37,7 @@ function QuoteList ({ quotes }) {
         {
           quotes.map(quote => (
             <li key={quote.id}>
-              <em>{quote.body}</em> -
+              <em>{quote.body}</em> - &nbsp;
               <Link to={`/authors/${quote.author.id}`}>
                 {quote.author.name}
               </Link>
