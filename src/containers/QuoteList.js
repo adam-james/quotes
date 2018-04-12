@@ -11,17 +11,17 @@ const shared = () => `
   font-size: 16px;
 `
 
-const Body = styled.blockquote`
+export const Body = styled.blockquote`
   ${shared()}
   line-height: 1.5em;
 `
 
-const Author = styled.p`
+export const Author = styled.p`
   ${shared()}
   margin-top: 0.5em;
 `
 
-const Quote = ({ authorId, authorName, id, children }) => (
+export const Quote = ({ authorId, authorName, id, children }) => (
   <article>
     <Body>{children}</Body>
     <Author>-- <Link to={`/authors/${authorId}`}>{authorName}</Link></Author>
