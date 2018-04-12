@@ -12,6 +12,7 @@ import {
   PageTitle
 } from '../components/PageHeader'
 import { List, ListItem } from '../components/List'
+import Quote from '../components/Quote'
 
 injectGlobalStyles()
 
@@ -38,28 +39,19 @@ storiesOf('HomePage', module)
           <SectionTitle>Recently Added Quotes</SectionTitle>
           <List>
             <ListItem>
-              <article>
-                <blockquote>
-                  <p>The secret of getting ahead is getting started.</p>
-                </blockquote>
-                <p>-- Mark Twain</p>
-              </article>
+              <Quote author="Mark Twain">
+                The secret of getting ahead is getting started.
+              </Quote>
             </ListItem>
             <ListItem>
-              <article>
-                <blockquote>
-                  <p>To thine own self be true, and it must follow, as the night the day, thou canst not then be false to any man.</p>
-                </blockquote>
-                <p>-- William Shakespeare</p>
-              </article>
+              <Quote author="William Shakespeare">
+                To thine own self be true, and it must follow, as the night the day, thou canst not then be false to any man.
+              </Quote>
             </ListItem>
             <ListItem>
-              <article>
-                <blockquote>
-                  <p>Too much sanity may be madness and the maddest of all, to see life as it is and not as it should be.</p>
-                </blockquote>
-                <p>-- Miguel de Cervantes</p>
-              </article>
+              <Quote author="Miguel de Cervantes">
+                Too much sanity may be madness and the maddest of all, to see life as it is and not as it should be.
+              </Quote>
             </ListItem>
           </List>
         </section>
