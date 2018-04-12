@@ -27,7 +27,7 @@ class CreateQuoteForm extends React.Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <h3>Add Quote</h3>
-        <input onChange={this.handleChange} />
+        <input onChange={this.handleChange} value={this.state.body} />
         <button type="submit">Add Quote</button>
       </form>
     )

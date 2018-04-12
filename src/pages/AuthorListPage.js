@@ -1,6 +1,7 @@
 import React from 'react'
 import { Mutation, Query } from 'react-apollo'
 import gql from 'graphql-tag'
+import { Link } from 'react-router-dom'
 
 const ALL_AUTHORS = gql`
   {
@@ -37,7 +38,7 @@ function AuthorList ({ authors }) {
         {
           authors.map((author) => (
             <li key={author.id}>
-              <p>{ author.name }</p>
+              <Link to={`/authors/${author.id}`}>{ author.name }</Link>
             </li>
           ))
         }
