@@ -3,7 +3,9 @@ import ReactDOM from 'react-dom'
 import ApolloClient from 'apollo-boost'
 import { ApolloProvider } from 'react-apollo'
 import Routes from './Routes'
-import './index.css'
+import injectGlobalStyles from './injectGlobalStyles'
+
+injectGlobalStyles()
 
 const client = new ApolloClient({
   uri: 'https://api.graph.cool/simple/v1/cjftrcwfa3gar0162yd9glw73'
