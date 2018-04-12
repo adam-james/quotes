@@ -4,10 +4,9 @@ import { Mutation, Query } from 'react-apollo'
 import gql from 'graphql-tag'
 
 class CreateQuoteForm extends React.Component {
-  state = { body: '' }
-
   constructor (props) {
     super(props)
+    this.state = { body: '' }
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
   }
@@ -28,7 +27,7 @@ class CreateQuoteForm extends React.Component {
       <form onSubmit={this.handleSubmit}>
         <h3>Add Quote</h3>
         <input onChange={this.handleChange} value={this.state.body} />
-        <button type="submit">Add Quote</button>
+        <button type='submit'>Add Quote</button>
       </form>
     )
   }
@@ -103,7 +102,7 @@ const CREATE_QUOTE = gql`
 
 function CreateQuote ({ authorId }) {
   const handleSubmit = (createQuote) => ({ body }) => {
-    createQuote({ variables: { authorId, body }})
+    createQuote({ variables: { authorId, body } })
   }
 
   return (
@@ -116,7 +115,7 @@ function CreateQuote ({ authorId }) {
         })
         const data = {
           Author: {
-            ...Author,            
+            ...Author,
             quotes: Author.quotes.concat([ createQuote ])
           }
         }

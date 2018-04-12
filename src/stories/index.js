@@ -1,6 +1,5 @@
-import React from 'react';
-import { storiesOf } from '@storybook/react';
-import styled from 'styled-components'
+import React from 'react'
+import { storiesOf } from '@storybook/react'
 
 import injectGlobalStyles from '../injectGlobalStyles'
 import { Container, SectionTitle } from '../components/Layout'
@@ -25,10 +24,10 @@ storiesOf('HomePage', module)
           <PageNav>
             <PageNavList>
               <PageNavListItem active>
-                <a href="#">Quotes</a>
+                <a href='#'>Quotes</a>
               </PageNavListItem>
               <PageNavListItem>
-                <a href="#">Authors</a>
+                <a href='#'>Authors</a>
               </PageNavListItem>
             </PageNavList>
           </PageNav>
@@ -39,17 +38,17 @@ storiesOf('HomePage', module)
           <SectionTitle>Recently Added Quotes</SectionTitle>
           <List>
             <ListItem>
-              <Quote author="Mark Twain">
+              <Quote author='Mark Twain'>
                 The secret of getting ahead is getting started.
               </Quote>
             </ListItem>
             <ListItem>
-              <Quote author="William Shakespeare">
+              <Quote author='William Shakespeare'>
                 To thine own self be true, and it must follow, as the night the day, thou canst not then be false to any man.
               </Quote>
             </ListItem>
             <ListItem>
-              <Quote author="Miguel de Cervantes">
+              <Quote author='Miguel de Cervantes'>
                 Too much sanity may be madness and the maddest of all, to see life as it is and not as it should be.
               </Quote>
             </ListItem>

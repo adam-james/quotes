@@ -34,9 +34,9 @@ export default function QuoteListPage () {
         return (
           <Main>
             <QuoteList
-              title="Recently Added Quotes"
+              title='Recently Added Quotes'
               quotes={data.allQuotes}
-              />
+            />
           </Main>
         )
       }}

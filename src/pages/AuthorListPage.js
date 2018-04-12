@@ -78,7 +78,7 @@ function CreateAuthor () {
         <form
           onSubmit={e => {
             e.preventDefault()
-            createAuthor({ variables: { name: input.value }})
+            createAuthor({ variables: { name: input.value } })
             input.value = ''
           }}
         >
@@ -88,7 +88,7 @@ function CreateAuthor () {
             }}
           />
 
-          <button type="submit">Add Author</button>
+          <button type='submit'>Add Author</button>
         </form>
       )}
     </Mutation>

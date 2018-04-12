@@ -1,7 +1,9 @@
 import React from 'react'
 import { shallow } from 'enzyme'
+/* global describe, it, expect */
+
 import { Link } from 'react-router-dom'
-import QuoteList, { Author, Body, Quote } from './QuoteList'
+import QuoteList, { Body, Quote } from './QuoteList'
 import { SectionTitle } from '../components/Layout'
 
 describe('Quote', () => {
