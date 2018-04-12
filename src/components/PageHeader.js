@@ -41,6 +41,7 @@ export const PageNavListItem = styled.li`
 
     ${active && `
       a {
+        color: red;
         text-decoration: underline;
       }
     `}
