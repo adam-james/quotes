@@ -2,6 +2,8 @@ import React from 'react'
 import { Query } from 'react-apollo'
 import gql from 'graphql-tag'
 import { Link } from 'react-router-dom'
+import QuoteList from '../containers/QuoteList'
+import { Main } from '../components/Layout'
 
 const ALL_QUOTES = gql`
   {
@@ -23,28 +25,15 @@ export default function QuoteListPage () {
         if (loading) return <p>Loading...</p>
         if (error) return <p>Error :(</p>
 
-        return <QuoteList quotes={data.allQuotes} />
+        return (
+          <Main>
+            <QuoteList
+              title="Recently Added Quotes"
+              quotes={data.allQuotes}
+              />
+          </Main>
+        )
       }}
     </Query>
-  )
-}
-
-function QuoteList ({ quotes }) {
-  return (
-    <section>
-      <h2>All Quotes</h2>
-      <ul>
-        {
-          quotes.map(quote => (
-            <li key={quote.id}>
-              <em>{quote.body}</em> - &nbsp;
-              <Link to={`/authors/${quote.author.id}`}>
-                {quote.author.name}
-              </Link>
-            </li>
-          ))
-        }
-      </ul>
-    </section>
   )
 }

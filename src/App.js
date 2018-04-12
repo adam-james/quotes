@@ -9,27 +9,31 @@ import {
   PageTitle
 } from './components/PageHeader'
 
+/**
+ * TODO
+ *  - test
+ *    - it renders page title
+ *    - it renders nav items with correct links
+ */
+
 const App = ({ children }) => (
-  <div>
-    <Container>
-      <PageHeader>
-        <PageTitle>
-          Some Quotes and Stuff
-        </PageTitle>
-        <PageNav>
-          <PageNavList>
-            <PageNavListItem active={window.location.pathname === '/'}>
-              <Link to="/">Quotes</Link>
-            </PageNavListItem>
-            <PageNavListItem active={window.location.pathname === '/authors'}>
-              <Link to="/authors">Authors</Link>
-            </PageNavListItem>
-          </PageNavList>            
-        </PageNav>
-      </PageHeader>
-    </Container>
-    {children}
-  </div>
+  <Container>
+    <PageHeader>
+      <PageTitle>
+        Some Quotes and Stuff
+      </PageTitle>
+      <PageNav>
+        <PageNavList>
+          <PageNavListItem active={window.location.pathname === '/'}>
+            <Link to="/">Quotes</Link>
+          </PageNavListItem>
+          <PageNavListItem active={window.location.pathname === '/authors'}>
+            <Link to="/authors">Authors</Link>
+          </PageNavListItem>
+        </PageNavList>
+      </PageNav>
+    </PageHeader>
+  </Container>
 )
 
 export default App
