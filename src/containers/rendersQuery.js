@@ -24,7 +24,7 @@ export const HeadsUp = styled.section`
   `}
 `
 
-const rendersQuery = (renderFunction) => (props) => {
+const rendersQuery = (Render) => (props) => {
   if (props.loading) {
     return (
       <Main>
@@ -43,7 +43,7 @@ const rendersQuery = (renderFunction) => (props) => {
       </Main>
     )
   }
-  return renderFunction(props)
+  return <Render {...props} />
 }
 
 export default rendersQuery

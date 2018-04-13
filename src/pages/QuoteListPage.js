@@ -10,13 +10,12 @@ import rendersQuery from '../containers/rendersQuery'
 
 /**
  * TODO:
- *  - sort by date
  *  - add pagination
  */
 
-const ALL_QUOTES = gql`
-  {
-    allQuotes (orderBy: createdAt_DESC) {
+const MORE_QUOTES = gql`
+  query quotes ($after: String) {
+    quotes: allQuotes (orderBy: createdAt_DESC, first: 10, after: $after) {
       id
       body
       createdAt
@@ -50,6 +49,21 @@ const DateAdded = styled.p`
   margin-top: 0.5em;
 `
 
+const ButtonContainer = styled.div`
+  margin-bottom: 24px;
+`
+
+const LoadMoreButton = styled.button`
+  border: 1px solid black;
+  text-transform: uppercase;
+  font-family: sans-serif;
+  font-size: 16px;
+  padding: 0.5em;
+  display: block;
+  width: 100%;
+  cursor: pointer;
+`
+
 const Quote = ({ author, body, createdAt, id }) => (
   <article>
     <Body>{body}</Body>
@@ -58,16 +72,74 @@ const Quote = ({ author, body, createdAt, id }) => (
   </article>
 )
 
-const render = rendersQuery(({ data }) => (
-  <Main>
-    <ListSection title="Quotes" items={data.allQuotes}>
-      {(quote) => <Quote {...quote} />}
-    </ListSection>
-  </Main>
-))
+class QuoteList extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      done: false
+    }
+    this.handleLoadMore = this.handleLoadMore.bind(this)
+  }
+
+  handleLoadMore () {
+    if (this.state.done) return
+    
+    const self = this
+    const { data, fetchMore } = this.props
+    const { quotes } = data
+    const lastQuote = quotes[quotes.length - 1]
+
+    fetchMore({
+      query: MORE_QUOTES,
+      variables: { after: lastQuote.id },
+      updateQuery: (previousResult, { fetchMoreResult }) => {
+        const previousQuotes = previousResult.quotes
+        const newQuotes = fetchMoreResult.quotes
+        const newLast = newQuotes[newQuotes.length - 1]
+
+        if (newLast) {
+          return {
+            after: newLast.id,
+            quotes: [...previousQuotes, ...newQuotes]
+          }
+        }
+
+        self.setState({ done: true })
+        return {
+          after: null,
+          quotes: previousQuotes
+        }
+      }
+    })
+  }
+
+  render () {
+    const { quotes } = this.props.data
+
+    return (
+      <Main>
+        <ListSection title="Quotes" items={quotes}>
+          {(quote) => <Quote {...quote} />}
+        </ListSection>
+
+        <ButtonContainer>
+          {this.state.done ?
+            <p>No more quotes.</p> 
+            :
+            <LoadMoreButton onClick={this.handleLoadMore}>
+              LOAD MORE
+            </LoadMoreButton>}
+        </ButtonContainer>
+
+      </Main>
+    )
+  }
+}
+
+const render = rendersQuery(QuoteList)
 
 const QuoteListPage = () => (
-  <Query query={ALL_QUOTES}>
+  <Query query={MORE_QUOTES} variables={{ after: null }}>
     {render}
   </Query>
 )
