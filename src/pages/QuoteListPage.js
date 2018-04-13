@@ -5,10 +5,12 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { Main } from '../components/Layout'
 import ListSection from '../containers/ListSection'
+import rendersQuery from '../containers/rendersQuery'
 
 /**
  * TODO:
  *  - add better loading
+ *  - handle errors
  *  - sort by date
  *  - add pagination
  */
@@ -50,18 +52,13 @@ const Quote = ({ author, body, id }) => (
   </article>
 )
 
-const render = ({ loading, error, data }) => {
-  if (loading) return <p>Loading...</p>
-  if (error) return <p>Error :(</p>
-
-  return (
-    <Main>
-      <ListSection title="Quotes" items={data.allQuotes}>
-        {(quote) => <Quote {...quote} />}
-      </ListSection>
-    </Main>
-  ) 
-}
+const render = rendersQuery(({ data }) => (
+  <Main>
+    <ListSection title="Quotes" items={data.allQuotes}>
+      {(quote) => <Quote {...quote} />}
+    </ListSection>
+  </Main>
+))
 
 const QuoteListPage = () => (
   <Query query={ALL_QUOTES}>

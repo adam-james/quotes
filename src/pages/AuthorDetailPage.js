@@ -5,6 +5,7 @@ import gql from 'graphql-tag'
 import styled from 'styled-components'
 import ListSection from '../containers/ListSection'
 import { Main } from '../components/Layout'
+import rendersQuery from '../containers/rendersQuery'
 
 // class CreateQuoteForm extends React.Component {
 //   constructor (props) {
@@ -104,16 +105,11 @@ const Author = ({ name, quotes }) => (
   </ListSection>
 )
 
-const render = ({ loading, error, data }) => {
-  if (loading) return <p>Loading...</p>
-  if (error) return <p>Error :(</p>
-
-  return (
-    <Main>
-      <Author {...data.Author} />
-    </Main>
-  )
-}
+const render = rendersQuery(({ data }) => (
+  <Main>
+    <Author {...data.Author} />
+  </Main>
+))
 
 const AuthorDetailPage = ({ match }) => {
   const { id } = match.params

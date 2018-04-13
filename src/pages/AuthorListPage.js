@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import ListSection from '../containers/ListSection'
 import { Main } from '../components/Layout'
+import rendersQuery from '../containers/rendersQuery'
 
 const ALL_AUTHORS = gql`
   {
@@ -30,18 +31,13 @@ const Author = styled(
   font-size: 14px;
 `
 
-const render = ({ loading, error, data }) => {
-  if (loading) return <p>Loading...</p>
-  if (error) return <p>Error :(</p>
-
-  return (
-    <Main>
-      <ListSection title="Authors" items={data.allAuthors}>
-        {(author) => <Author {...author} />}
-      </ListSection>
-    </Main>
-  )
-}
+const render = rendersQuery(({ data }) => (
+  <Main>
+    <ListSection title="Authors" items={data.allAuthors}>
+      {(author) => <Author {...author} />}
+    </ListSection>
+  </Main>
+))
 
 const AuthorListPage = () => (
   <Query query={ALL_AUTHORS}>
