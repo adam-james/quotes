@@ -30,21 +30,23 @@ const Author = styled(
   font-size: 14px;
 `
 
+const render = ({ loading, error, data }) => {
+  if (loading) return <p>Loading...</p>
+  if (error) return <p>Error :(</p>
+
+  return (
+    <Main>
+      <ListSection title="Authors" items={data.allAuthors}>
+        {(author) => <Author {...author} />}
+      </ListSection>
+    </Main>
+  )
+}
+
 export default function AuthorListPage () {
   return (
     <Query query={ALL_AUTHORS}>
-      {({ loading, error, data }) => {
-        if (loading) return <p>Loading...</p>
-        if (error) return <p>Error :(</p>
-
-        return (
-          <Main>
-            <ListSection title="Authors" items={data.allAuthors}>
-              {(author) => <Author {...author} />}
-            </ListSection>
-          </Main>
-        )
-      }}
+      {render}
     </Query>
   )
 }
