@@ -22,7 +22,6 @@ export const SectionTitle = styled.h2`
   font-weight: 700;
   margin-top: 1em;
   padding: 0.75em;
-  border: 1px solid black;
   text-align: center;
   border-radius: 2px;
 `
