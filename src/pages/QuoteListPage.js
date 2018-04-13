@@ -9,11 +9,6 @@ import ListSection from '../containers/ListSection'
 import rendersQuery from '../containers/rendersQuery'
 import { fullName } from './helpers'
 
-/**
- * TODO:
- *  - add pagination
- */
-
 const MORE_QUOTES = gql`
   query quotes ($after: String) {
     quotes: allQuotes (orderBy: createdAt_DESC, first: 10, after: $after) {

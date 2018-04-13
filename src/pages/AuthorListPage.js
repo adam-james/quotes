@@ -1,5 +1,5 @@
 import React from 'react'
-import { /*Mutation,*/ Query } from 'react-apollo'
+import { Query } from 'react-apollo'
 import gql from 'graphql-tag'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
@@ -40,6 +40,7 @@ const Author = styled(
 
 const render = rendersQuery(({ data }) => (
   <Main>
+    <Link to="add-author">Add Author</Link>
     <ListSection title="Authors" items={data.allAuthors}>
       {(author) => <Author {...author} />}
     </ListSection>
@@ -53,51 +54,3 @@ const AuthorListPage = () => (
 )
 
 export default AuthorListPage
-
-// const CREATE_AUTHOR = gql`
-//   mutation createAuthor($name: String!) {
-//     createAuthor(name: $name) {
-//       id
-//       name
-//     }
-//   }
-// `
-
-// /**
-//  * NOTE: You don't need to call update function for update mutation.
-//  * Objects will be updated in the cache.
-//  */
-// function CreateAuthor () {
-//   let input
-
-//   return (
-//     <Mutation
-//       mutation={CREATE_AUTHOR}
-//       update={(cache, { data: { createAuthor } }) => {
-//         const { allAuthors } = cache.readQuery({ query: ALL_AUTHORS })
-//         cache.writeQuery({
-//           query: ALL_AUTHORS,
-//           data: { allAuthors: allAuthors.concat([ createAuthor ]) }
-//         })
-//       }}
-//     >
-//       {(createAuthor) => (
-//         <form
-//           onSubmit={e => {
-//             e.preventDefault()
-//             createAuthor({ variables: { name: input.value } })
-//             input.value = ''
-//           }}
-//         >
-//           <input
-//             ref={node => {
-//               input = node
-//             }}
-//           />
-
-//           <button type='submit'>Add Author</button>
-//         </form>
-//       )}
-//     </Mutation>
-//   )
-// }
