@@ -1,11 +1,15 @@
 type Quote @model {
   id: ID! @isUnique
+  createdAt: DateTime!
+  updatedAt: DateTime!
   body: String!
   author: Author! @relation(name: "AuthorQuotes")
 }
 
 type Author @model {
   id: ID! @isUnique
+  createdAt: DateTime!
+  updatedAt: DateTime!
   name: String!
   quotes: [Quote!]! @relation(name: "AuthorQuotes")
 }

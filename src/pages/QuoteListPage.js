@@ -3,23 +3,23 @@ import { Query } from 'react-apollo'
 import gql from 'graphql-tag'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
+import moment from 'moment'
 import { Main } from '../components/Layout'
 import ListSection from '../containers/ListSection'
 import rendersQuery from '../containers/rendersQuery'
 
 /**
  * TODO:
- *  - add better loading
- *  - handle errors
  *  - sort by date
  *  - add pagination
  */
 
 const ALL_QUOTES = gql`
   {
-    allQuotes {
+    allQuotes (orderBy: createdAt_DESC) {
       id
       body
+      createdAt
       author {
         id
         name
@@ -45,10 +45,16 @@ const Author = styled.p`
   margin-top: 0.5em;
 `
 
-const Quote = ({ author, body, id }) => (
+const DateAdded = styled.p`
+  ${shared()}
+  margin-top: 0.5em;
+`
+
+const Quote = ({ author, body, createdAt, id }) => (
   <article>
     <Body>{body}</Body>
     <Author>-- <Link to={`/authors/${author.id}`}>{author.name}</Link></Author>
+    <DateAdded>Added {moment(createdAt).fromNow()}</DateAdded>
   </article>
 )
 
