@@ -1,8 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-import { SectionTitle } from '../components/Layout'
-import { List, ListItem } from '../components/List'
+import ListSection from './ListSection'
 
 const shared = () => `
   margin: 0;
@@ -29,18 +28,13 @@ export const Quote = ({ authorId, authorName, id, children }) => (
 )
 
 const QuoteList = ({ title, quotes }) => (
-  <section>
-    <SectionTitle>{title}</SectionTitle>
-    <List>
-      {quotes.map(({ author, body, id }) => (
-        <ListItem key={id}>
-          <Quote authorName={author.name} authorId={author.id}>
-            {body}
-          </Quote>
-        </ListItem>
-      ))}
-    </List>
-  </section>
+  <ListSection title={title} items={quotes}>
+    {({ author, body, id }) => (
+      <Quote authorName={author.name} authorId={author.id}>
+        {body}
+      </Quote>
+    )}
+  </ListSection>
 )
 
 export default QuoteList
