@@ -1,6 +1,5 @@
 import React from 'react'
 import { Query } from 'react-apollo'
-import gql from 'graphql-tag'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import moment from 'moment'
@@ -8,21 +7,7 @@ import { Main } from '../components/Layout'
 import ListSection from '../containers/ListSection'
 import rendersQuery from '../containers/rendersQuery'
 import { fullName } from './helpers'
-
-const MORE_QUOTES = gql`
-  query quotes ($after: String) {
-    quotes: allQuotes (orderBy: createdAt_DESC, first: 10, after: $after) {
-      id
-      body
-      createdAt
-      author {
-        id
-        firstName
-        lastName
-      }
-    }
-  }
-`
+import { MORE_QUOTES } from '../queries'
 
 const shared = () => `
   margin: 0;

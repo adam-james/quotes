@@ -1,19 +1,8 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
 import { Mutation } from 'react-apollo'
-import gql from 'graphql-tag'
 import { Main } from '../components/Layout'
-import {ALL_AUTHORS } from '../queries'
-
-const CREATE_AUTHOR = gql`
-  mutation createAuthor($firstName: String!, $lastName: String!) {
-    createAuthor(firstName: $firstName, lastName: $lastName) {
-      id
-      firstName
-      lastName
-    }
-  }
-`
+import { ALL_AUTHORS, CREATE_AUTHOR } from '../queries'
 
 class CreateAuthorForm extends React.Component {
   constructor (props) {
@@ -77,10 +66,10 @@ const AuthorCreatePage = ({ history }) => (
   <Mutation
     mutation={CREATE_AUTHOR}
     update={(cache, { data: { createAuthor } }) => {
-      const { allAuthors } = cache.readQuery({ query: ALL_AUTHORS })
+      const { authors } = cache.readQuery({ query: ALL_AUTHORS })
       cache.writeQuery({
         query: ALL_AUTHORS,
-        data: { allAuthors: allAuthors.concat([ createAuthor ]) }
+        data: { authors: authors.concat([ createAuthor ]) }
       })
     }}
   >

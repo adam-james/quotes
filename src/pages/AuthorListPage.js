@@ -1,27 +1,17 @@
 import React from 'react'
 import { Query } from 'react-apollo'
-import gql from 'graphql-tag'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import ListSection from '../containers/ListSection'
 import { Main } from '../components/Layout'
 import rendersQuery from '../containers/rendersQuery'
 import { fullName } from './helpers';
+import { ALL_AUTHORS } from '../queries'
 
 /**
  * TODO
  *  - Organize by last name
  */
-
-const ALL_AUTHORS = gql`
-  {
-    allAuthors {
-      id
-      firstName
-      lastName
-    }
-  }
-`
 
 const Author = styled(
   ({ id, firstName, lastName, className }) => (
@@ -41,7 +31,7 @@ const Author = styled(
 const render = rendersQuery(({ data }) => (
   <Main>
     <Link to="add-author">Add Author</Link>
-    <ListSection title="Authors" items={data.allAuthors}>
+    <ListSection title="Authors" items={data.authors}>
       {(author) => <Author {...author} />}
     </ListSection>
   </Main>

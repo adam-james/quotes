@@ -1,12 +1,12 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
-import { Mutation, Query } from 'react-apollo'
-import gql from 'graphql-tag'
+import { Query } from 'react-apollo'
 import styled from 'styled-components'
 import ListSection from '../containers/ListSection'
 import { Main } from '../components/Layout'
 import rendersQuery from '../containers/rendersQuery'
 import { fullName } from './helpers'
+import { GET_AUTHOR } from '../queries'
 
 // class CreateQuoteForm extends React.Component {
 //   constructor (props) {
@@ -37,20 +37,6 @@ import { fullName } from './helpers'
 //     )
 //   }
 // }
-
-const GET_AUTHOR = gql`
-  query Author($id: ID!) {
-    Author(id: $id) {
-      id
-      firstName
-      lastName
-      quotes {
-        id
-        body
-      }
-    }
-  }
-`
 
 // const CREATE_QUOTE = gql`
 //   mutation createQuote($authorId: ID!, $body: String!) {
@@ -112,7 +98,7 @@ const Author = ({ firstName, lastName, quotes }) => (
 
 const render = rendersQuery(({ data }) => (
   <Main>
-    <Author {...data.Author} />
+    <Author {...data.author} />
   </Main>
 ))
 

@@ -2,7 +2,7 @@ import gql from 'graphql-tag'
 
 export const ALL_AUTHORS = gql`
   {
-    allAuthors {
+    authors: allAuthors {
       id
       firstName
       lastName
@@ -21,6 +21,30 @@ export const MORE_QUOTES = gql`
         firstName
         lastName
       }
+    }
+  }
+`
+
+export const GET_AUTHOR = gql`
+  query Author($id: ID!) {
+    author: Author(id: $id) {
+      id
+      firstName
+      lastName
+      quotes {
+        id
+        body
+      }
+    }
+  }
+`
+
+export const CREATE_AUTHOR = gql`
+  mutation createAuthor($firstName: String!, $lastName: String!) {
+    createAuthor(firstName: $firstName, lastName: $lastName) {
+      id
+      firstName
+      lastName
     }
   }
 `
