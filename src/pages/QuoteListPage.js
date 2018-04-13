@@ -7,6 +7,7 @@ import moment from 'moment'
 import { Main } from '../components/Layout'
 import ListSection from '../containers/ListSection'
 import rendersQuery from '../containers/rendersQuery'
+import { fullName } from './helpers'
 
 /**
  * TODO:
@@ -21,7 +22,8 @@ const MORE_QUOTES = gql`
       createdAt
       author {
         id
-        name
+        firstName
+        lastName
       }
     }
   }
@@ -67,7 +69,7 @@ const LoadMoreButton = styled.button`
 const Quote = ({ author, body, createdAt, id }) => (
   <article>
     <Body>{body}</Body>
-    <Author>-- <Link to={`/authors/${author.id}`}>{author.name}</Link></Author>
+    <Author>-- <Link to={`/authors/${author.id}`}>{fullName(author)}</Link></Author>
     <DateAdded>Added {moment(createdAt).fromNow()}</DateAdded>
   </article>
 )
@@ -115,7 +117,6 @@ class QuoteList extends React.Component {
 
   render () {
     const { quotes } = this.props.data
-
     return (
       <Main>
         <ListSection title="Quotes" items={quotes}>

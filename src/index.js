@@ -8,7 +8,7 @@ import injectGlobalStyles from './injectGlobalStyles'
 injectGlobalStyles()
 
 const client = new ApolloClient({
-  uri: 'https://api.graph.cool/simple/v1/cjftrcwfa3gar0162yd9glw73'
+  uri: 'https://api.graph.cool/simple/v1/cjfyizhy38ho00100nny2nxcc'
 })
 
 ReactDOM.render(

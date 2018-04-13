@@ -6,21 +6,28 @@ import styled from 'styled-components'
 import ListSection from '../containers/ListSection'
 import { Main } from '../components/Layout'
 import rendersQuery from '../containers/rendersQuery'
+import { fullName } from './helpers';
+
+/**
+ * TODO
+ *  - Organize by last name
+ */
 
 const ALL_AUTHORS = gql`
   {
     allAuthors {
       id
-      name
+      firstName
+      lastName
     }
   }
 `
 
 const Author = styled(
-  ({ id, name, className }) => (
+  ({ id, firstName, lastName, className }) => (
     <p className={className}>
       <Link to={`/authors/${id}`}>
-        {name}
+        {fullName({ firstName, lastName })}
       </Link>
     </p>
   )

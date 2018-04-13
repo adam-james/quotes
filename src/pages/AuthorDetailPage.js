@@ -6,6 +6,7 @@ import styled from 'styled-components'
 import ListSection from '../containers/ListSection'
 import { Main } from '../components/Layout'
 import rendersQuery from '../containers/rendersQuery'
+import { fullName } from './helpers'
 
 // class CreateQuoteForm extends React.Component {
 //   constructor (props) {
@@ -41,7 +42,8 @@ const GET_AUTHOR = gql`
   query Author($id: ID!) {
     Author(id: $id) {
       id
-      name
+      firstName
+      lastName
       quotes {
         id
         body
@@ -99,8 +101,11 @@ const QuoteBody = styled.p`
   line-height: 1.5em;  
 `
 
-const Author = ({ name, quotes }) => (
-  <ListSection title={`Quotes from ${name}`} items={quotes}>
+const Author = ({ firstName, lastName, quotes }) => (
+  <ListSection
+    title={`Quotes from ${fullName({ firstName, lastName })}`}
+    items={quotes}
+  >
     {({ body }) => <QuoteBody>{body}</QuoteBody>}
   </ListSection>
 )
