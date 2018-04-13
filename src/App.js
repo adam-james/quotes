@@ -9,13 +9,6 @@ import {
   PageTitle
 } from './components/PageHeader'
 
-/**
- * TODO
- *  - test
- *    - it renders page title
- *    - it renders nav items with correct links
- */
-
 const App = ({ children }) => (
   <Container>
     <PageHeader>
