@@ -25,10 +25,10 @@ const App = ({ children }) => (
       <PageNav>
         <PageNavList>
           <PageNavListItem active={window.location.pathname === '/'}>
-            <Link to="/">Quotes</Link>
+            <Link to='/'>Quotes</Link>
           </PageNavListItem>
           <PageNavListItem active={window.location.pathname === '/authors'}>
-            <Link to="/authors">Authors</Link>
+            <Link to='/authors'>Authors</Link>
           </PageNavListItem>
         </PageNavList>
       </PageNav>
