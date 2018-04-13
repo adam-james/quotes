@@ -43,13 +43,13 @@ const render = ({ loading, error, data }) => {
   )
 }
 
-export default function AuthorListPage () {
-  return (
-    <Query query={ALL_AUTHORS}>
-      {render}
-    </Query>
-  )
-}
+const AuthorListPage = () => (
+  <Query query={ALL_AUTHORS}>
+    {render}
+  </Query>
+)
+
+export default AuthorListPage
 
 // const CREATE_AUTHOR = gql`
 //   mutation createAuthor($name: String!) {

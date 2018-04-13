@@ -4,7 +4,6 @@ import { Mutation, Query } from 'react-apollo'
 import gql from 'graphql-tag'
 import styled from 'styled-components'
 import ListSection from '../containers/ListSection'
-import { SectionTitle } from '../components/Layout'
 import { Main } from '../components/Layout'
 
 // class CreateQuoteForm extends React.Component {

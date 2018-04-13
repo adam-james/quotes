@@ -63,10 +63,10 @@ const render = ({ loading, error, data }) => {
   ) 
 }
 
-export default function QuoteListPage () {
-  return (
-    <Query query={ALL_QUOTES}>
-      {render}
-    </Query>
-  )
-}
+const QuoteListPage = () => (
+  <Query query={ALL_QUOTES}>
+    {render}
+  </Query>
+)
+
+export default QuoteListPage
