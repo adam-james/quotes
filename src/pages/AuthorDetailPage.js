@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 import { Mutation, Query } from 'react-apollo'
 import styled from 'styled-components'
 import ListSection from '../containers/ListSection'
@@ -9,53 +9,6 @@ import rendersQuery from '../containers/rendersQuery'
 import { fullName } from './helpers'
 import { GET_AUTHOR, CREATE_QUOTE } from '../queries'
 import QuoteCreateForm from '../containers/QuoteCreateForm'
-
-/**
- * TODO:
- *  - clear add quote form on submit
- */
-
-const AddQuote = ({ id, firstName, lastName }) => {
-  const update = (cache, { data: { createQuote } }) => {
-    const { author } = cache.readQuery({
-      query: GET_AUTHOR,
-      variables: { id: id }
-    })
-    const data = {
-      author: {
-        ...author,
-        quotes: author.quotes.concat([ createQuote ])
-      }
-    }
-    cache.writeQuery({
-      query: GET_AUTHOR,
-      data
-    })
-  }
-
-  return (
-    <Mutation mutation={CREATE_QUOTE} update={update}>
-      {createQuote => {
-        const handleSubmit = ({ body }) => {
-          createQuote({ variables: { body, authorId: id } })
-        }
-
-        return (
-          <section>
-            <h3>Add Quote for author {fullName({ firstName, lastName })}</h3>
-            <QuoteCreateForm onSubmit={handleSubmit} />
-          </section>
-        )
-      }}
-    </Mutation>
-  )
-}
-
-AddQuote.propTypes = {
-  id: PropTypes.string.isRequired,
-  firstName: PropTypes.string.isRequired,
-  lastName: PropTypes.string.isRequired
-}
 
 const QuoteBody = styled.p`
   margin: 0;
@@ -76,7 +29,9 @@ const Author = ({ firstName, lastName, quotes }) => (
 
 const render = rendersQuery(({ data }) => (
   <Main>
-    <AddQuote {...data.author} />
+    <Link to={`/authors/${data.author.id}/add-quote`}>
+      Add Quote for author {fullName(data.author)}
+    </Link>
     <Author {...data.author} />
   </Main>
 ))

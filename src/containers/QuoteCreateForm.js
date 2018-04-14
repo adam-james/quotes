@@ -7,7 +7,7 @@ const QuoteCreateForm = ({ onSubmit }) => (
     {formApi => (
       <form onSubmit={formApi.submitForm}>
 
-        <label htmlFor="body">First Name</label>
+        <label htmlFor="body">Quote</label>
         <Text field="body" id="body" />
 
         <button type="submit">Submit</button>
