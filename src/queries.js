@@ -2,7 +2,7 @@ import gql from 'graphql-tag'
 
 export const ALL_AUTHORS = gql`
   {
-    authors: allAuthors {
+    authors: allAuthors (orderBy: lastName_ASC) {
       id
       firstName
       lastName
