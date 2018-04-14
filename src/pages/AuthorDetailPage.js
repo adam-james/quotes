@@ -1,83 +1,61 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { withRouter } from 'react-router-dom'
-import { Query } from 'react-apollo'
+import { Mutation, Query } from 'react-apollo'
 import styled from 'styled-components'
 import ListSection from '../containers/ListSection'
 import { Main } from '../components/Layout'
 import rendersQuery from '../containers/rendersQuery'
 import { fullName } from './helpers'
-import { GET_AUTHOR } from '../queries'
+import { GET_AUTHOR, CREATE_QUOTE } from '../queries'
+import QuoteCreateForm from '../containers/QuoteCreateForm'
 
-// class CreateQuoteForm extends React.Component {
-//   constructor (props) {
-//     super(props)
-//     this.state = { body: '' }
-//     this.handleSubmit = this.handleSubmit.bind(this)
-//     this.handleChange = this.handleChange.bind(this)
-//   }
+/**
+ * TODO:
+ *  - clear add quote form on submit
+ */
 
-//   handleSubmit (e) {
-//     e.preventDefault()
-//     this.props.onSubmit({ body: this.state.body })
-//     this.setState({ body: '' })
-//   }
+const AddQuote = ({ id, firstName, lastName }) => {
+  const update = (cache, { data: { createQuote } }) => {
+    const { author } = cache.readQuery({
+      query: GET_AUTHOR,
+      variables: { id: id }
+    })
+    const data = {
+      author: {
+        ...author,
+        quotes: author.quotes.concat([ createQuote ])
+      }
+    }
+    cache.writeQuery({
+      query: GET_AUTHOR,
+      data
+    })
+  }
 
-//   handleChange (e) {
-//     const { value } = e.target
-//     this.setState({ body: value })
-//   }
+  return (
+    <Mutation mutation={CREATE_QUOTE} update={update}>
+      {createQuote => {
+        const handleSubmit = ({ body }) => {
+          createQuote({ variables: { body, authorId: id } })
+        }
 
-//   render () {
-//     return (
-//       <form onSubmit={this.handleSubmit}>
-//         <h3>Add Quote</h3>
-//         <input onChange={this.handleChange} value={this.state.body} />
-//         <button type='submit'>Add Quote</button>
-//       </form>
-//     )
-//   }
-// }
+        return (
+          <section>
+            <h3>Add Quote for author {fullName({ firstName, lastName })}</h3>
+            <QuoteCreateForm onSubmit={handleSubmit} />
+          </section>
+        )
+      }}
+    </Mutation>
+  )
+}
 
-// const CREATE_QUOTE = gql`
-//   mutation createQuote($authorId: ID!, $body: String!) {
-//     createQuote(authorId: $authorId, body: $body) {
-//       id
-//       body
-//     }
-//   }
-// `
-
-// function CreateQuote ({ authorId }) {
-//   const handleSubmit = (createQuote) => ({ body }) => {
-//     createQuote({ variables: { authorId, body } })
-//   }
-
-//   return (
-//     <Mutation
-//       mutation={CREATE_QUOTE}
-//       update={(cache, { data: { createQuote } }) => {
-//         const { Author } = cache.readQuery({
-//           query: GET_AUTHOR,
-//           variables: { id: authorId }
-//         })
-//         const data = {
-//           Author: {
-//             ...Author,
-//             quotes: Author.quotes.concat([ createQuote ])
-//           }
-//         }
-//         cache.writeQuery({
-//           query: GET_AUTHOR,
-//           data
-//         })
-//       }}
-//     >
-//       {(createQuote) => (
-//         <CreateQuoteForm onSubmit={handleSubmit(createQuote)} />
-//       )}
-//     </Mutation>
-//   )
-// }
+AddQuote.propTypes = {
+  id: PropTypes.string.isRequired,
+  firstName: PropTypes.string.isRequired,
+  lastName: PropTypes.string.isRequired
+}
 
 const QuoteBody = styled.p`
   margin: 0;
@@ -98,6 +76,7 @@ const Author = ({ firstName, lastName, quotes }) => (
 
 const render = rendersQuery(({ data }) => (
   <Main>
+    <AddQuote {...data.author} />
     <Author {...data.author} />
   </Main>
 ))

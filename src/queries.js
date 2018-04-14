@@ -48,3 +48,12 @@ export const CREATE_AUTHOR = gql`
     }
   }
 `
+
+export const CREATE_QUOTE = gql`
+  mutation createQuote($authorId: ID!, $body: String!) {
+    createQuote(authorId: $authorId, body: $body) {
+      id
+      body
+    }
+  }
+`
