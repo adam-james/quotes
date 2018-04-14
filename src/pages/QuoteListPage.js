@@ -120,7 +120,11 @@ class QuoteList extends React.Component {
 const render = rendersQuery(QuoteList)
 
 const QuoteListPage = () => (
-  <Query query={MORE_QUOTES} variables={{ after: null }}>
+  <Query
+    query={MORE_QUOTES}
+    variables={{ after: null }}
+    fetchPolicy="network-only"
+  >
     {render}
   </Query>
 )
