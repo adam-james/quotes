@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import ListSection from '../containers/ListSection'
 import { Main } from '../components/Layout'
 import rendersQuery from '../containers/rendersQuery'
-import { nameLastFirst } from './helpers';
+import { nameLastFirst } from './helpers'
 import { ALL_AUTHORS } from '../queries'
 
 /**
@@ -30,8 +30,8 @@ const Author = styled(
 
 const render = rendersQuery(({ data }) => (
   <Main>
-    <Link to="add-author">Add Author</Link>
-    <ListSection title="Authors" items={data.authors}>
+    <Link to='add-author'>Add Author</Link>
+    <ListSection title='Authors' items={data.authors}>
       {(author) => <Author {...author} />}
     </ListSection>
   </Main>

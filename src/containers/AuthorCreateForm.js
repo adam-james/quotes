@@ -7,13 +7,13 @@ const AuthorCreateForm = ({ onSubmit }) => (
     {formApi => (
       <form onSubmit={formApi.submitForm}>
 
-        <label htmlFor="firstName">First Name</label>
-        <Text field="firstName" id="firstName" />
+        <label htmlFor='firstName'>First Name</label>
+        <Text field='firstName' id='firstName' />
 
-        <label htmlFor="lastName">Last Name</label>
-        <Text field="lastName" id="lastName" />
+        <label htmlFor='lastName'>Last Name</label>
+        <Text field='lastName' id='lastName' />
 
-        <button type="submit">Submit</button>
+        <button type='submit'>Submit</button>
       </form>
     )}
   </Form>

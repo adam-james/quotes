@@ -99,15 +99,14 @@ class QuoteList extends React.Component {
     const { quotes } = this.props.data
     return (
       <Main>
-        <ListSection title="Quotes" items={quotes}>
+        <ListSection title='Quotes' items={quotes}>
           {(quote) => <Quote {...quote} />}
         </ListSection>
 
         <ButtonContainer>
-          {this.state.done ?
-            <p>No more quotes.</p> 
-            :
-            <LoadMoreButton onClick={this.handleLoadMore}>
+          {this.state.done
+            ? <p>No more quotes.</p>
+            : <LoadMoreButton onClick={this.handleLoadMore}>
               LOAD MORE
             </LoadMoreButton>}
         </ButtonContainer>
@@ -123,7 +122,7 @@ const QuoteListPage = () => (
   <Query
     query={MORE_QUOTES}
     variables={{ after: null }}
-    fetchPolicy="network-only"
+    fetchPolicy='network-only'
   >
     {render}
   </Query>

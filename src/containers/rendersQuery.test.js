@@ -35,7 +35,7 @@ describe('rendersQuery', () => {
     const renderFunction = jest.fn()
     const props = { data: { a: 1, b: 2 } }
     const Render = rendersQuery(renderFunction)
-    const wrapper = shallow(<Render {...props} />)
+    shallow(<Render {...props} />)
     expect(renderFunction).toBeCalledWith(props)
   })
 })

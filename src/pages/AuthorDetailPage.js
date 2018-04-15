@@ -1,14 +1,12 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { withRouter, Link } from 'react-router-dom'
-import { Mutation, Query } from 'react-apollo'
+import { Query } from 'react-apollo'
 import styled from 'styled-components'
 import ListSection from '../containers/ListSection'
 import { Main } from '../components/Layout'
 import rendersQuery from '../containers/rendersQuery'
 import { fullName } from './helpers'
-import { GET_AUTHOR, CREATE_QUOTE } from '../queries'
-import QuoteCreateForm from '../containers/QuoteCreateForm'
+import { GET_AUTHOR } from '../queries'
 
 const QuoteBody = styled.p`
   margin: 0;

@@ -7,17 +7,17 @@ const QuoteCreateForm = ({ onSubmit }) => (
     {formApi => (
       <form onSubmit={formApi.submitForm}>
 
-        <label htmlFor="body">Quote</label>
-        <Text field="body" id="body" />
+        <label htmlFor='body'>Quote</label>
+        <Text field='body' id='body' />
 
-        <button type="submit">Submit</button>
+        <button type='submit'>Submit</button>
       </form>
     )}
   </Form>
 )
 
 QuoteCreateForm.propTypes = {
-  onSubmit: PropTypes.func.isRequired  
+  onSubmit: PropTypes.func.isRequired
 }
 
 export default QuoteCreateForm
