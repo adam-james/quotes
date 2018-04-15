@@ -65,7 +65,7 @@ class QuoteList extends React.Component {
 
   handleLoadMore () {
     if (this.state.done) return
-    
+
     const self = this
     const { data, fetchMore } = this.props
     const { quotes } = data
