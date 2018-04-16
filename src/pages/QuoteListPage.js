@@ -6,30 +6,9 @@ import moment from 'moment'
 import { Main } from '../components/Layout'
 import ListSection from '../containers/ListSection'
 import rendersQuery from '../containers/rendersQuery'
-import { fullName } from './helpers'
+import { fullName } from '../components/helpers'
 import { MORE_QUOTES } from '../queries'
-
-const shared = () => `
-  margin: 0;
-  text-align: center;
-  font-family: sans-serif;
-  font-size: 16px;
-`
-
-const Body = styled.blockquote`
-  ${shared()}
-  line-height: 1.5em;
-`
-
-const Author = styled.p`
-  ${shared()}
-  margin-top: 0.5em;
-`
-
-const DateAdded = styled.p`
-  ${shared()}
-  margin-top: 0.5em;
-`
+import Quote from '../components/Quote'
 
 const ButtonContainer = styled.div`
   margin-bottom: 24px;
@@ -45,14 +24,6 @@ const LoadMoreButton = styled.button`
   width: 100%;
   cursor: pointer;
 `
-
-const Quote = ({ author, body, createdAt, id }) => (
-  <article>
-    <Body>{body}</Body>
-    <Author>-- <Link to={`/authors/${author.id}`}>{fullName(author)}</Link></Author>
-    <DateAdded>Added {moment(createdAt).fromNow()}</DateAdded>
-  </article>
-)
 
 class QuoteList extends React.Component {
   constructor (props) {

@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import debounce from 'lodash/debounce'
 import ListSection from '../containers/ListSection'
 import { Main } from '../components/Layout'
-import { fullName } from './helpers'
+import { fullName } from '../components/helpers'
 import { SEARCH_AUTHORS } from '../queries'
 
 const Author = styled(

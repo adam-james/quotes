@@ -9,6 +9,7 @@ export const List = styled.ul`
 export const ListItem = styled.li`
   padding: 1em;
   margin: 1em 0;
-  border: 1px solid black;
   border-radius: 2px;
+  background: #fff;
+  box-shadow: 0 1px 2px 0 rgba(0,0,0,0.50);
 `

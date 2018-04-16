@@ -5,16 +5,16 @@ export const PageTitle = styled.h1`
   padding: 0;
   font-size: 20px;
   font-weight: 700;
-  font-family: sans-serif;
+  font-family: 'Lato', sans-serif;
+  color: #fff;
   text-align: center;
-  height: 60px;
+  height: 65px;
   box-sizing: border-box;
   padding-top: 18px;
-  border-bottom: 2px solid black;
+  background-color: #455A64;
 `
 
 export const PageNav = styled.nav`
-  border-bottom: 1px solid black;
 `
 
 export const PageNavList = styled.ul`
@@ -27,22 +27,28 @@ export const PageNavList = styled.ul`
 
 export const PageNavListItem = styled.li`
   ${({ active }) => `
-    font-family: sans-serif;
+    font-family: 'Lato', sans-serif;
     font-size: 16px;
     font-weight: 700;
-    padding: 1em;
+    height: 48px;
     width: 50%;
     text-align: center;
+    background-color: #455A64;
 
     a {
       text-decoration: none;
-      color: black;
+      color: #fff;
+      display: block;
+      width: 100%;
+      height: 100%;
+      padding-top: 1em;
     }
 
     ${active && `
+      background-color: #1C313A;
+    
       a {
-        color: red;
-        text-decoration: underline;
+        color: #fff;
       }
     `}
   `}
