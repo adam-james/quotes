@@ -75,11 +75,9 @@ class QuoteListPaginator extends React.Component {
 
     return (
       <QuoteListFooter>
-        {this.state.done
-          ? <p>No more quotes.</p>
-          : <Button onClick={this.handleLoadMore}>
-            LOAD MORE
-          </Button>}
+        <Button onClick={this.handleLoadMore}>
+          LOAD MORE
+        </Button>
       </QuoteListFooter>
     )
   }
