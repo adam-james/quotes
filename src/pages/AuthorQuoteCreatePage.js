@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom'
 import { Mutation, Query } from 'react-apollo'
 import QuoteCreateForm from '../containers/QuoteCreateForm'
 import { GET_AUTHOR, CREATE_QUOTE } from '../queries'
-import { fullName } from '../components/helpers'
+import { fullName } from '../containers/helpers'
 import rendersQuery from '../containers/rendersQuery'
 import { Main } from '../components/Layout'
 

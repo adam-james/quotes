@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import ListSection from '../containers/ListSection'
 import { Main } from '../components/Layout'
 import rendersQuery from '../containers/rendersQuery'
-import { fullName } from '../components/helpers'
+import { fullName } from '../containers/helpers'
 import { GET_AUTHOR } from '../queries'
 
 const QuoteBody = styled.p`

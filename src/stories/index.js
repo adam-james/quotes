@@ -1,6 +1,7 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
 import moment from 'moment'
+import { MemoryRouter } from 'react-router-dom'
 
 import injectGlobalStyles from '../injectGlobalStyles'
 import { Container, SectionTitle } from '../components/Layout'
@@ -50,6 +51,9 @@ const quotes = [
 ]
 
 storiesOf('HomePage', module)
+  .addDecorator(story => (
+    <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
+  ))
   .add('layout', () => (
     <div>
       <Container>

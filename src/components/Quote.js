@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import moment from 'moment'
-import { fullName } from './helpers'
+import { Link } from 'react-router-dom'
 
 const shared = () => `
   margin: 0;
@@ -14,27 +13,20 @@ export const QuoteBody = styled.blockquote`
   ${shared()}
   line-height: 1.5em;
   font-style: italic;
+  font-size: 20px;
 `
 
-export const QuoteAuthor = styled.p`
+export const QuoteMeta = styled.p`
+  margin: 0.5em 0 0.25em;
+  text-align: center;
+`
+
+export const QuoteAuthor = styled(Link)`
   ${shared()}
-  display: block;
-  margin-top: 0.5em;
   color: #1C313A;
 `
 
-export const QuoteDateAdded = styled.p`
+export const QuoteDateAdded = styled.span`
   ${shared()}
-  margin-top: 0.75em;
   font-size: 14px;
 `
-
-const Quote = ({ author, body, createdAt, id }) => (
-  <article>
-    <QuoteBody>"{body}"</QuoteBody>
-    <QuoteAuthor to={`/authors/${author.id}`}>{fullName(author)}</QuoteAuthor>
-    <QuoteDateAdded>Added {moment(createdAt).fromNow()}</QuoteDateAdded>
-  </article>
-)
-
-export default Quote

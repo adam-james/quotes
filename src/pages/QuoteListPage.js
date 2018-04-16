@@ -6,9 +6,9 @@ import moment from 'moment'
 import { Main } from '../components/Layout'
 import ListSection from '../containers/ListSection'
 import rendersQuery from '../containers/rendersQuery'
-import { fullName } from '../components/helpers'
+import { fullName } from '../containers/helpers'
 import { MORE_QUOTES } from '../queries'
-import Quote from '../components/Quote'
+import Quote from '../containers/Quote'
 
 const ButtonContainer = styled.div`
   margin-bottom: 24px;
