@@ -1,20 +1,14 @@
 import React from 'react'
 import { Query } from 'react-apollo'
 import { MORE_QUOTES } from '../queries'
-import { List, ListItem } from '../components/List'
 import { Spinner } from '../components/icons'
 import Quote from './Quote'
-import { Button, ButtonContainer } from '../components/Button'
-
-const QuoteListList = ({ quotes }) => (
-  <List>
-    {quotes.map(quote => (
-      <ListItem key={quote.id}>
-        <Quote {...quote} />
-      </ListItem>
-    ))}
-  </List>
-)
+import { Button } from '../components/Button'
+import {
+  QuoteListDone,
+  QuoteListFooter,
+  QuoteListList
+} from '../components/QuoteList'
 
 class QuoteListPaginator extends React.Component {
   constructor (props) {
@@ -65,19 +59,29 @@ class QuoteListPaginator extends React.Component {
   render () {
     if (this.state.fetching)  {
       return (
-        <ButtonContainer>
+        <QuoteListFooter>
           <Spinner />
-        </ButtonContainer>
+        </QuoteListFooter>
       )
-    }   
+    }
+    if (this.state.done) {
+      return (
+        <QuoteListFooter>
+          <QuoteListDone>
+            No more quotes.
+          </QuoteListDone>
+        </QuoteListFooter>
+      )
+    }
+
     return (
-      <ButtonContainer>
+      <QuoteListFooter>
         {this.state.done
           ? <p>No more quotes.</p>
           : <Button onClick={this.handleLoadMore}>
             LOAD MORE
           </Button>}
-      </ButtonContainer>
+      </QuoteListFooter>
     )
   }
 }

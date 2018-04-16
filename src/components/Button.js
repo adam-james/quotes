@@ -12,7 +12,3 @@ export const Button = styled.button`
   color: #fff;
   border-radius: 2px;
 `
-
-export const ButtonContainer = styled.div`
-  margin-bottom: 36px;
-`
