@@ -7,6 +7,7 @@ import ListSection from '../containers/ListSection'
 import { Main } from '../components/Layout'
 import { fullName } from '../containers/helpers'
 import { SEARCH_AUTHORS } from '../queries'
+import { LinkButton } from '../components/Button'
 
 const Author = styled(
   ({ id, firstName, lastName, className, _quotesMeta }) => (
@@ -72,7 +73,7 @@ const AuthorListPage = () => (
   <ApolloConsumer>
     {client => (
       <Main>
-        <Link to='add-author'>Add Author</Link>
+        <LinkButton to='add-author'>+ Add Author</LinkButton>
         <AuthorSearch client={client} />
       </Main>
     )}

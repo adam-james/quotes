@@ -1,6 +1,7 @@
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
-export const Button = styled.button`
+const shared = () => `
   font-family: 'Lato', sans-serif;
   height: 48px;
   display: block;
@@ -11,4 +12,18 @@ export const Button = styled.button`
   background-color: #1C313A;
   color: #fff;
   border-radius: 2px;
+  border: none;
+`
+
+export const Button = styled.button`
+  ${shared()}
+`
+
+export const LinkButton = styled(Link)`
+  ${shared()}
+  text-decoration: none;
+  text-align: center;
+  padding-top: 0.8em;
+  box-sizing: border-box;
+  margin-top: 20px;
 `
