@@ -13,7 +13,8 @@ import {
   PageTitle
 } from '../components/PageHeader'
 import { List, ListItem } from '../components/List'
-import Quote from '../components/Quote'
+import Quote from '../containers/Quote'
+import { Spinner } from '../components/icons'
 
 injectGlobalStyles()
 
@@ -84,4 +85,10 @@ storiesOf('HomePage', module)
         </section>
       </Container>
     </div>
+  ))
+
+
+storiesOf('icons', module)
+  .add('Spinner', () => (
+    <Spinner />
   ))
