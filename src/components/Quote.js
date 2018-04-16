@@ -13,7 +13,7 @@ export const QuoteBody = styled.blockquote`
   ${shared()}
   line-height: 1.5em;
   font-style: italic;
-  font-size: 20px;
+  font-size: 18px;
 `
 
 export const QuoteMeta = styled.p`

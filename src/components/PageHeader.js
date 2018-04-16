@@ -33,7 +33,7 @@ export const PageNavListItem = styled.li`
     height: 48px;
     width: 50%;
     text-align: center;
-    background-color: #455A64;
+    background-color: #1C313A;
 
     a {
       text-decoration: none;
@@ -45,8 +45,8 @@ export const PageNavListItem = styled.li`
     }
 
     ${active && `
-      background-color: #1C313A;
-    
+      background-color: #455A64;
+
       a {
         color: #fff;
       }
