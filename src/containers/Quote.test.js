@@ -6,8 +6,7 @@ import { fullName } from './helpers'
 import {
   QuoteAuthor,
   QuoteBody,
-  QuoteDateAdded,
-  QuoteMeta
+  QuoteDateAdded
 } from '../components/Quote'
 import Quote from './Quote'
 
@@ -33,7 +32,7 @@ describe('Quote', () => {
     const props = testProps()
     const wrapper = shallow(<Quote {...props} />)
     const body = wrapper.find(QuoteBody)
-    expect(body.props().children).toEqual(['"', props.body, '"']) 
+    expect(body.props().children).toEqual(['"', props.body, '"'])
   })
 
   it('renders QuoteAuthor', () => {

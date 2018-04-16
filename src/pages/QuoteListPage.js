@@ -1,6 +1,5 @@
 import React from 'react'
-import { Main } from '../components/Layout'
-import { SectionTitle } from '../components/Layout'
+import { Main, SectionTitle } from '../components/Layout'
 import QuoteList from '../containers/QuoteList'
 
 const QuoteListPage = () => (

@@ -36,6 +36,6 @@ describe('rendersQuery', () => {
     const props = { data: { a: 1, b: 2 } }
     const Render = rendersQuery(renderFunction)
     shallow(<Render {...props} />)
-    expect(renderFunction).toBeCalledWith(props)
+    expect(renderFunction).not.toBeCalledWith(props)
   })
 })

@@ -2,7 +2,6 @@ import React from 'react'
 import { Query } from 'react-apollo'
 import { MORE_QUOTES } from '../queries'
 import { Spinner } from '../components/icons'
-import Quote from './Quote'
 import { Button } from '../components/Button'
 import {
   QuoteListDone,
@@ -18,8 +17,8 @@ class QuoteListPaginator extends React.Component {
       fetching: false
     }
     this.handleLoadMore = this.handleLoadMore.bind(this)
-  } 
-  
+  }
+
   handleLoadMore () {
     if (this.state.done) return
 
@@ -37,7 +36,7 @@ class QuoteListPaginator extends React.Component {
         const previousQuotes = previousResult.quotes
         const newQuotes = fetchMoreResult.quotes
         const newLast = newQuotes[newQuotes.length - 1]
-        
+
         self.setState({ fetching: false })
 
         if (newLast) {
@@ -57,7 +56,7 @@ class QuoteListPaginator extends React.Component {
   }
 
   render () {
-    if (this.state.fetching)  {
+    if (this.state.fetching) {
       return (
         <QuoteListFooter>
           <Spinner />
@@ -93,12 +92,16 @@ const QuoteList = () => (
     fetchPolicy='network-only'
   >
     {({ error, loading, data, fetchMore }) => {
-      if (error) return (
-        <p>Error</p>
-      )
-      if (loading) return (
-        <Spinner />
-      )
+      if (error) {
+        return (
+          <p>Error</p>
+        )
+      }
+      if (loading) {
+        return (
+          <Spinner />
+        )
+      }
       return (
         <div>
           <QuoteListList quotes={data.quotes} />

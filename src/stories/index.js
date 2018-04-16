@@ -1,6 +1,5 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import moment from 'moment'
 import { MemoryRouter } from 'react-router-dom'
 
 import injectGlobalStyles from '../injectGlobalStyles'
@@ -86,7 +85,6 @@ storiesOf('HomePage', module)
       </Container>
     </div>
   ))
-
 
 storiesOf('icons', module)
   .add('Spinner', () => (
