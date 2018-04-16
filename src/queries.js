@@ -1,5 +1,25 @@
 import gql from 'graphql-tag'
 
+export const SEARCH_AUTHORS = gql`
+  query authors ($query: String!) {
+    authors: allAuthors (filter: {
+      OR:[
+        { firstName_starts_with: $query },
+        { lastName_starts_with: $query }
+      ]
+    }) {
+      id
+      firstName
+      lastName
+      createdAt
+      updatedAt
+      _quotesMeta {
+        count
+      }
+    }
+  }
+`
+
 export const ALL_AUTHORS = gql`
   {
     authors: allAuthors (orderBy: lastName_ASC) {

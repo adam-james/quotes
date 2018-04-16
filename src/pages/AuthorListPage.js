@@ -1,24 +1,21 @@
 import React from 'react'
-import { Query } from 'react-apollo'
+import { ApolloConsumer } from 'react-apollo'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
+import debounce from 'lodash/debounce'
 import ListSection from '../containers/ListSection'
 import { Main } from '../components/Layout'
-import rendersQuery from '../containers/rendersQuery'
-import { nameLastFirst } from './helpers'
-import { ALL_AUTHORS } from '../queries'
-
-/**
- * TODO
- *  - Organize by last name
- */
+import { fullName } from './helpers'
+import { SEARCH_AUTHORS } from '../queries'
 
 const Author = styled(
-  ({ id, firstName, lastName, className }) => (
+  ({ id, firstName, lastName, className, _quotesMeta }) => (
     <p className={className}>
       <Link to={`/authors/${id}`}>
-        {nameLastFirst({ firstName, lastName })}
+        {fullName({ firstName, lastName })}
       </Link>
+      &nbsp;
+      ({ _quotesMeta.count } quotes)
     </p>
   )
 )`
@@ -28,19 +25,58 @@ const Author = styled(
   font-size: 14px;
 `
 
-const render = rendersQuery(({ data }) => (
-  <Main>
-    <Link to='add-author'>Add Author</Link>
-    <ListSection title='Authors' items={data.authors}>
-      {(author) => <Author {...author} />}
-    </ListSection>
-  </Main>
-))
+const SearchInput = styled.input.attrs({
+  type: 'text',
+  placeholder: 'William Shakespeare'
+})``
+
+class AuthorSearch extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = { authors: [] }
+    this.handleChange = this.handleChange.bind(this)
+    this.fetchAuthors = debounce(this.fetchAuthors, 250).bind(this)
+  }
+
+  handleChange (e) {
+    const { value: query } = e.target
+    this.fetchAuthors(query)
+  }
+
+  async fetchAuthors (query) {
+    if (query === '') {
+      return this.setState({ authors: [] })
+    }
+
+    const { data } = await this.props.client.query({
+      query: SEARCH_AUTHORS,
+      variables: { query: query }
+    })
+    this.setState({ authors: data.authors })
+  }
+
+  render () {
+    return (
+      <section>
+        <h2>Search Authors</h2>
+        <SearchInput onChange={this.handleChange} />
+        <ListSection title='Authors' items={this.state.authors}>
+          {(author) => <Author {...author} />}
+        </ListSection>
+      </section>
+    )
+  }
+}
 
 const AuthorListPage = () => (
-  <Query query={ALL_AUTHORS}>
-    {render}
-  </Query>
+  <ApolloConsumer>
+    {client => (
+      <Main>
+        <Link to='add-author'>Add Author</Link>
+        <AuthorSearch client={client} />
+      </Main>
+    )}
+  </ApolloConsumer>
 )
 
 export default AuthorListPage
