@@ -72,8 +72,8 @@ export const AuthorQuotes = ({ quotes }) => (
 )
 
 AuthorQuotes.propTypes = {
-  quotes: PropTypes.arrayOf({
-    body: PropTypes.string,
+  quotes: PropTypes.arrayOf(PropTypes.shape({
+    body: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired
-  }).isRequired
+  })).isRequired
 }

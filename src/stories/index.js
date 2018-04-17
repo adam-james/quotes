@@ -6,6 +6,7 @@ import injectGlobalStyles from '../injectGlobalStyles'
 import { AuthorCard, AuthorQuotes } from '../components/AuthorDetail'
 import { Card, CardTitle } from '../components/card'
 import { Container, SectionTitle } from '../components/Layout'
+import { FormLabel, FormSubmit, FormText } from '../components/form'
 import {
   PageHeader,
   PageNav,
@@ -18,12 +19,35 @@ import Quote from '../containers/Quote'
 import { SearchInput } from '../components/search'
 
 import styled from 'styled-components'
+import { Form } from 'react-form'
 
 const StoryContainer = styled.div`
   margin: 25px;
 `
 
 injectGlobalStyles()
+
+storiesOf('Form Components', module)
+  .add('Form', () => (
+    <StoryContainer>
+      <Card>
+        <CardTitle>Add Author</CardTitle>
+        <Form>
+          {formApi => (
+            <form>
+              <FormLabel htmlFor='firstName'>First Name</FormLabel>
+              <FormText field='firstName' id='firstName' />
+
+              <FormLabel htmlFor='lastName'>Last Name</FormLabel>
+              <FormText field='lastName' id='lastName' />
+
+              <FormSubmit>Add</FormSubmit>
+            </form>
+          )}
+        </Form>
+      </Card>
+    </StoryContainer>
+  ))
 
 const authorQuotes = [
   { id: '123', body: 'One cannot think well, love well, sleep well, if one has not dined well.' },

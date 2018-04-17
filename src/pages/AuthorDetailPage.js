@@ -7,10 +7,6 @@ import { GET_AUTHOR } from '../queries'
 import { LinkButton } from '../components/Button'
 import { AuthorCard, AuthorQuotes } from '../components/AuthorDetail'
 
-/**
- * Todo add author quotes
- */
-
 const render = rendersQuery(({ data }) => (
   <Main>
     <LinkButton to={`/authors/${data.author.id}/add-quote`}>

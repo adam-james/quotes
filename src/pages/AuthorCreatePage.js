@@ -21,7 +21,6 @@ export class Page extends React.Component {
   render () {
     return (
       <Main>
-        <h2>Add Author Here</h2>
         <AuthorCreateForm onSubmit={this.handleSubmit} />
       </Main>
     )
