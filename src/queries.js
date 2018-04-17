@@ -55,6 +55,9 @@ export const GET_AUTHOR = gql`
         id
         body
       }
+      _quotesMeta {
+        count
+      }
     }
   }
 `

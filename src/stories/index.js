@@ -3,6 +3,7 @@ import { action, storiesOf } from '@storybook/react'
 import { MemoryRouter } from 'react-router-dom'
 
 import injectGlobalStyles from '../injectGlobalStyles'
+import { AuthorCard } from '../containers/AuthorDetail'
 import { Card, CardTitle } from '../components/card'
 import { Container, SectionTitle } from '../components/Layout'
 import {
@@ -16,7 +17,24 @@ import { List, ListItem } from '../components/List'
 import Quote from '../containers/Quote'
 import { SearchInput } from '../components/search'
 
+import styled from 'styled-components'
+
+const StoryContainer = styled.div`
+  margin: 25px;
+`
+
 injectGlobalStyles()
+
+storiesOf('AuthorDetail', module)
+  .add('AuthorCard', () => (
+    <StoryContainer>
+      <AuthorCard
+        name='Mark Twain'
+        numQuotes={10}
+        onToggle={action('toggle AuthorCard')}
+      />
+    </StoryContainer>
+  ))
 
 storiesOf('Card', module)
   .add('SearchInput', () => (
