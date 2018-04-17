@@ -3,10 +3,9 @@ import { withRouter } from 'react-router-dom'
 import { Query } from 'react-apollo'
 import { Main } from '../components/Layout'
 import rendersQuery from '../containers/rendersQuery'
-import { fullName } from '../containers/helpers'
 import { GET_AUTHOR } from '../queries'
 import { LinkButton } from '../components/Button'
-import { AuthorCard } from '../containers/AuthorDetail'
+import { AuthorCard } from '../components/AuthorDetail'
 
 const render = rendersQuery(({ data }) => (
   <Main>
@@ -14,7 +13,7 @@ const render = rendersQuery(({ data }) => (
       + Add Quote
     </LinkButton>
     <AuthorCard
-      name={fullName(data.author)}
+      {...data.author}
       numQuotes={data.author._quotesMeta.count}
     />
   </Main>
