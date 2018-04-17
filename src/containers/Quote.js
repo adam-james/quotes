@@ -30,7 +30,6 @@ Quote.propTypes = {
     lastName: PropTypes.string.isRequired
   }).isRequired,
   body: PropTypes.string.isRequired,
-  className: PropTypes.string.isRequired,
   createdAt: PropTypes.string.isRequired
 }
 

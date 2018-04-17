@@ -7,6 +7,8 @@ import { Main } from '../components/Layout'
 import rendersQuery from '../containers/rendersQuery'
 import { fullName } from '../containers/helpers'
 import { GET_AUTHOR } from '../queries'
+import { LinkButton } from '../components/Button'
+import Error from '../components/Error'
 
 const QuoteBody = styled.p`
   margin: 0;
@@ -27,9 +29,9 @@ const Author = ({ firstName, lastName, quotes }) => (
 
 const render = rendersQuery(({ data }) => (
   <Main>
-    <Link to={`/authors/${data.author.id}/add-quote`}>
-      Add Quote for author {fullName(data.author)}
-    </Link>
+    <LinkButton to={`/authors/${data.author.id}/add-quote`}>
+      + Add Quote
+    </LinkButton>
     <Author {...data.author} />
   </Main>
 ))
