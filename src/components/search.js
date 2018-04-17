@@ -23,7 +23,6 @@ const SearchInputInput = styled.input`
   width: 90%;
   height: 100%;
   margin: 0 auto;
-  border-left: 1px solid #979797;  
 `
 
 export const SearchInput = styled(
