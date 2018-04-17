@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 const ErrorMessage = styled.div`
   color: red;
-  padding: 1em;
+  padding: 0.5em;
   border: 1px solid red;
   font-family: 'Lato', sans-serif;
   font-size: 16px;
