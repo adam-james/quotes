@@ -1,8 +1,9 @@
 import React from 'react'
-import { storiesOf } from '@storybook/react'
+import { action, storiesOf } from '@storybook/react'
 import { MemoryRouter } from 'react-router-dom'
 
 import injectGlobalStyles from '../injectGlobalStyles'
+import { Card, CardTitle } from '../components/card'
 import { Container, SectionTitle } from '../components/Layout'
 import {
   PageHeader,
@@ -13,9 +14,21 @@ import {
 } from '../components/PageHeader'
 import { List, ListItem } from '../components/List'
 import Quote from '../containers/Quote'
-import { Spinner } from '../components/icons'
+import { SearchInput } from '../components/search'
+
+import styled from 'styled-components'
 
 injectGlobalStyles()
+
+storiesOf('Card', module)
+  .add('SearchInput', () => (
+    <div style={{ margin: '25px' }}>
+      <Card>
+        <CardTitle>I'm the card title</CardTitle>
+        <SearchInput onChange={action('change input')} />
+      </Card>
+    </div>
+  ))
 
 const quotes = [
   {
@@ -84,9 +97,4 @@ storiesOf('HomePage', module)
         </section>
       </Container>
     </div>
-  ))
-
-storiesOf('icons', module)
-  .add('Spinner', () => (
-    <Spinner />
   ))
