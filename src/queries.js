@@ -15,18 +15,19 @@ export const RECENT_AUTHORS = gql`
 `
 
 export const SEARCH_AUTHORS = gql`
-  query authors ($query: String!) {
-    authors: allAuthors (filter: {
+  query authors ($first: String!, $last: String) {
+    authors: allAuthors (filter:{
       OR:[
-        { firstName_starts_with: $query },
-        { lastName_starts_with: $query }
+        { firstName_contains: $first },
+        { lastName_contains: $first },
+        { firstName_contains: $last },
+        { lastName_contains: $last }
       ]
     }) {
       id
       firstName
       lastName
       createdAt
-      updatedAt
       _quotesMeta {
         count
       }

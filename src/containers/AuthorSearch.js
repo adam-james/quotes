@@ -31,12 +31,24 @@ Content.propTypes = {
   query: PropTypes.string.isRequired
 }
 
+export const splitQuery = query => {
+  const trimmed = query.trim()
+  const firstSpace = trimmed.indexOf(' ')
+  const first = trimmed.substring(0, firstSpace)
+  const last = trimmed.substring(firstSpace + 1)
+  // If first, then first and last; otherwise, just first.
+  return {
+    first: first || last,
+    last: first ? last : null
+  }
+}
+
 export class AuthorSearch extends React.Component {
   constructor (props) {
     super(props)
     this.state = { authors: [], loading: false, query: '' }
     this.handleChange = this.handleChange.bind(this)
-    this.fetchAuthors = debounce(this.fetchAuthors, 250).bind(this)
+    this.fetchAuthors = debounce(this.fetchAuthors, 500).bind(this)
   }
 
   handleChange (e) {
@@ -50,9 +62,10 @@ export class AuthorSearch extends React.Component {
       return this.setState({ authors: [], loading: false })
     }
 
+    const variables = splitQuery(query)
     const { data } = await this.props.client.query({
       query: SEARCH_AUTHORS,
-      variables: { query: query }
+      variables
     })
     this.setState({ authors: data.authors, loading: false })
   }
