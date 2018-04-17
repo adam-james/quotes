@@ -2,9 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { withRouter } from 'react-router-dom'
 import { Mutation } from 'react-apollo'
-import sortBy from 'lodash/sortBy'
 import { Main } from '../components/Layout'
-import { ALL_AUTHORS, CREATE_AUTHOR } from '../queries'
+import { CREATE_AUTHOR } from '../queries'
 import AuthorCreateForm from '../containers/AuthorCreateForm'
 
 export class Page extends React.Component {
@@ -15,7 +14,6 @@ export class Page extends React.Component {
 
   handleSubmit ({ firstName, lastName }) {
     this.props.createAuthor({ variables: { firstName, lastName } })
-    this.props.history.push('/authors')
   }
 
   render () {
@@ -28,33 +26,31 @@ export class Page extends React.Component {
 }
 
 Page.propTypes = {
-  createAuthor: PropTypes.func.isRequired,
-  history: PropTypes.shape({
-    push: PropTypes.func.isRequired
-  }).isRequired
+  createAuthor: PropTypes.func.isRequired
 }
 
-export const updateQuery = (cache, { data: { createAuthor } }) => {
-  const { authors } = cache.readQuery({ query: ALL_AUTHORS })
-  const updated = sortBy(
-    authors.concat([ createAuthor ]),
-    author => author.lastName
-  )
-  cache.writeQuery({
-    query: ALL_AUTHORS,
-    data: { authors: updated }
-  })
+class AuthorCreatePage extends React.Component {
+  constructor (props) {
+    super(props)
+    this.updateQuery = this.updateQuery.bind(this)
+  }
+
+  updateQuery (cache, { data: { createAuthor } }) {
+    this.props.history.push(`/authors/${createAuthor.id}`)
+  }
+
+  render () {
+    return (
+      <Mutation
+        mutation={CREATE_AUTHOR}
+        update={this.updateQuery}
+      >
+        {(createAuthor) => (
+          <Page createAuthor={createAuthor} />
+        )}
+      </Mutation>
+    )
+  }
 }
 
-const WithMutation = ({ history }) => (
-  <Mutation
-    mutation={CREATE_AUTHOR}
-    update={updateQuery}
-  >
-    {(createAuthor) => (
-      <Page createAuthor={createAuthor} history={history} />
-    )}
-  </Mutation>
-)
-
-export default withRouter(WithMutation)
+export default withRouter(AuthorCreatePage)
