@@ -3,7 +3,7 @@ import { action, storiesOf } from '@storybook/react'
 import { MemoryRouter } from 'react-router-dom'
 
 import injectGlobalStyles from '../injectGlobalStyles'
-import { AuthorCard } from '../components/AuthorDetail'
+import { AuthorCard, AuthorQuotes } from '../components/AuthorDetail'
 import { Card, CardTitle } from '../components/card'
 import { Container, SectionTitle } from '../components/Layout'
 import {
@@ -25,6 +25,11 @@ const StoryContainer = styled.div`
 
 injectGlobalStyles()
 
+const authorQuotes = [
+  { id: '123', body: 'One cannot think well, love well, sleep well, if one has not dined well.' },
+  { id: '456', body: 'The secret to getting ahead is getting started.' }
+]
+
 storiesOf('AuthorDetail', module)
   .addDecorator(story => (
     <MemoryRouter initialEntries={['/']}>{story()}</MemoryRouter>
@@ -35,6 +40,11 @@ storiesOf('AuthorDetail', module)
         {...{ firstName: 'Mark', lastName: 'Twain', id: '123' }}
         numQuotes={10}
       />
+    </StoryContainer>
+  ))
+  .add('AuthorQuotes', () => (
+    <StoryContainer>
+      <AuthorQuotes quotes={authorQuotes} />
     </StoryContainer>
   ))
 

@@ -8,6 +8,11 @@ import { fullName } from '../containers/helpers'
 import rendersQuery from '../containers/rendersQuery'
 import { Main } from '../components/Layout'
 
+/**
+ * TODO:
+ *  - Style this up.
+ */
+
 const AddQuote = ({ id, firstName, lastName, history }) => {
   const update = (cache, { data: { createQuote } }) => {
     const { author } = cache.readQuery({

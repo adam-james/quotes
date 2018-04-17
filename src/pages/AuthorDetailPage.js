@@ -5,7 +5,11 @@ import { Main } from '../components/Layout'
 import rendersQuery from '../containers/rendersQuery'
 import { GET_AUTHOR } from '../queries'
 import { LinkButton } from '../components/Button'
-import { AuthorCard } from '../components/AuthorDetail'
+import { AuthorCard, AuthorQuotes } from '../components/AuthorDetail'
+
+/**
+ * Todo add author quotes
+ */
 
 const render = rendersQuery(({ data }) => (
   <Main>
@@ -16,6 +20,7 @@ const render = rendersQuery(({ data }) => (
       {...data.author}
       numQuotes={data.author._quotesMeta.count}
     />
+    <AuthorQuotes quotes={data.author.quotes} />
   </Main>
 ))
 
