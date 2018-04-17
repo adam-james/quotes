@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import styled from 'styled-components'
 import moment from 'moment'
 import { fullName } from './helpers'
 import {
@@ -9,8 +10,8 @@ import {
   QuoteMeta
 } from '../components/Quote'
 
-const Quote = ({ author, body, createdAt }) => (
-  <article>
+const Quote = styled(({ author, body, className, createdAt }) => (
+  <article className={className}>
     <QuoteBody>"{body}"</QuoteBody>
     <QuoteMeta>
       <QuoteAuthor to={`/authors/${author.id}`}>{fullName(author)}</QuoteAuthor>
@@ -18,7 +19,9 @@ const Quote = ({ author, body, createdAt }) => (
       <QuoteDateAdded>Added {moment(createdAt).fromNow()}</QuoteDateAdded>
     </QuoteMeta>
   </article>
-)
+))`
+  padding: 0.75em;
+`
 
 Quote.propTypes = {
   author: PropTypes.shape({
@@ -27,6 +30,7 @@ Quote.propTypes = {
     lastName: PropTypes.string.isRequired
   }).isRequired,
   body: PropTypes.string.isRequired,
+  className: PropTypes.string.isRequired,
   createdAt: PropTypes.string.isRequired
 }
 
