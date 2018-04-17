@@ -2,9 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { withRouter } from 'react-router-dom'
 import { Mutation } from 'react-apollo'
+import { Card, CardTitle } from '../components/card'
 import { Main } from '../components/Layout'
 import { CREATE_AUTHOR } from '../queries'
-import AuthorCreateForm from '../containers/AuthorCreateForm'
+import AuthorForm from '../containers/AuthorForm'
 
 export class Page extends React.Component {
   constructor (props) {
@@ -19,7 +20,10 @@ export class Page extends React.Component {
   render () {
     return (
       <Main>
-        <AuthorCreateForm onSubmit={this.handleSubmit} />
+        <Card>
+          <CardTitle>Create Author</CardTitle>
+          <AuthorForm onSubmit={this.handleSubmit} />
+        </Card>
       </Main>
     )
   }

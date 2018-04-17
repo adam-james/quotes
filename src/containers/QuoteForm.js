@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Form } from 'react-form'
-import { Card, CardTitle } from '../components/card'
 import {
   FormError,
   FormLabel,
