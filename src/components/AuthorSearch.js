@@ -29,10 +29,8 @@ export const AuthorMeta = styled(
   ({ className, createdAt, numQuotes, recent }) => (
     <div className={className}>
       {recent
-        ? 
-      `Added ${moment(createdAt).fromNow()}` 
-        :
-      `${numQuotes} quotes`}
+        ? `Added ${moment(createdAt).fromNow()}`
+        : `${numQuotes} quotes`}
     </div>
   )
 )`

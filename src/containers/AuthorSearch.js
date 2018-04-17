@@ -10,7 +10,7 @@ import { AuthorList, SearchResults } from '../components/AuthorSearch'
 import { SectionTitle } from '../components/Layout'
 import RecentAuthorList from './RecentAuthorList'
 
-const Content = ({ authors, loading, query  }) => {
+const Content = ({ authors, loading, query }) => {
   if (loading) {
     return <Spinner />
   }
@@ -26,7 +26,7 @@ const Content = ({ authors, loading, query  }) => {
 }
 
 Content.propTypes = {
-  authors: PropTypes.array.isRequired,  
+  authors: PropTypes.array.isRequired,
   loading: PropTypes.bool,
   query: PropTypes.string.isRequired
 }
