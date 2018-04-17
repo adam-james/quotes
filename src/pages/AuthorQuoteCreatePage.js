@@ -2,10 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { withRouter } from 'react-router-dom'
 import { Mutation, Query } from 'react-apollo'
-import QuoteCreateForm from '../containers/QuoteCreateForm'
+import QuoteForm from '../containers/QuoteForm'
 import { GET_AUTHOR, CREATE_QUOTE } from '../queries'
 import rendersQuery from '../containers/rendersQuery'
 import { Main } from '../components/Layout'
+import { Card, CardTitle } from '../components/card'
 
 const AddQuote = ({ id, firstName, lastName, history }) => {
   const update = (cache, { data: { createQuote } }) => {
@@ -34,11 +35,10 @@ const AddQuote = ({ id, firstName, lastName, history }) => {
         }
 
         return (
-          <QuoteCreateForm
-            firstName={firstName}
-            lastName={lastName}
-            onSubmit={handleSubmit}
-          />
+          <Card>
+            <CardTitle>Add Quote for { `${firstName} ${lastName}` }</CardTitle>
+            <QuoteForm onSubmit={handleSubmit} />
+          </Card>
         )
       }}
     </Mutation>
