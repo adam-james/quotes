@@ -16,8 +16,6 @@ import { List, ListItem } from '../components/List'
 import Quote from '../containers/Quote'
 import { SearchInput } from '../components/search'
 
-import styled from 'styled-components'
-
 injectGlobalStyles()
 
 storiesOf('Card', module)

@@ -7,7 +7,6 @@ export const List = styled.ul`
 `
 
 export const ListItem = styled.li`
-  padding: 1em;
   margin: 1em 0;
   border-radius: 2px;
   background: #fff;

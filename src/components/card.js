@@ -5,6 +5,7 @@ export const Card = styled.section`
   box-shadow: 0 1px 2px 0 rgba(0,0,0,0.50);
   border-radius: 2px;
   padding: 12px 18px;
+  margin: 20px 0;
 `
 
 export const CardTitle = styled.h3`
