@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Text } from 'react-form'
+import { Text, TextArea } from 'react-form'
 
 export const FormLabel = styled.label`
   font-family: 'Lato', sans-serif;
@@ -42,4 +42,20 @@ export const FormSubmit = styled.button.attrs({
   letter-spacing: 0.25px;
   text-align: center;
   text-transform: uppercase;
+`
+
+export const FormTextArea = styled(TextArea)`
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  resize: none;
+  border: 1px solid #979797;
+  border-radius: 3px;
+  font-family: 'Lato', sans-serif;
+  font-size: 16px;
+  border: 1px solid #979797;
+  color: #373737;
+  padding: 0.5em;
+  margin-bottom: 0.75em;
+  min-height: 100px;  
 `

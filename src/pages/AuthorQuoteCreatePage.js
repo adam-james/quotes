@@ -4,14 +4,8 @@ import { withRouter } from 'react-router-dom'
 import { Mutation, Query } from 'react-apollo'
 import QuoteCreateForm from '../containers/QuoteCreateForm'
 import { GET_AUTHOR, CREATE_QUOTE } from '../queries'
-import { fullName } from '../containers/helpers'
 import rendersQuery from '../containers/rendersQuery'
 import { Main } from '../components/Layout'
-
-/**
- * TODO:
- *  - Style this up.
- */
 
 const AddQuote = ({ id, firstName, lastName, history }) => {
   const update = (cache, { data: { createQuote } }) => {
@@ -40,10 +34,11 @@ const AddQuote = ({ id, firstName, lastName, history }) => {
         }
 
         return (
-          <section>
-            <h3>Add Quote for author {fullName({ firstName, lastName })}</h3>
-            <QuoteCreateForm onSubmit={handleSubmit} />
-          </section>
+          <QuoteCreateForm
+            firstName={firstName}
+            lastName={lastName}
+            onSubmit={handleSubmit}
+          />
         )
       }}
     </Mutation>

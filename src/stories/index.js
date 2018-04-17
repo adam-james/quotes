@@ -6,7 +6,12 @@ import injectGlobalStyles from '../injectGlobalStyles'
 import { AuthorCard, AuthorQuotes } from '../components/AuthorDetail'
 import { Card, CardTitle } from '../components/card'
 import { Container, SectionTitle } from '../components/Layout'
-import { FormLabel, FormSubmit, FormText } from '../components/form'
+import {
+  FormLabel,
+  FormSubmit,
+  FormText,
+  FormTextArea
+} from '../components/form'
 import {
   PageHeader,
   PageNav,
@@ -28,7 +33,7 @@ const StoryContainer = styled.div`
 injectGlobalStyles()
 
 storiesOf('Form Components', module)
-  .add('Form', () => (
+  .add('Add Author', () => (
     <StoryContainer>
       <Card>
         <CardTitle>Add Author</CardTitle>
@@ -40,6 +45,23 @@ storiesOf('Form Components', module)
 
               <FormLabel htmlFor='lastName'>Last Name</FormLabel>
               <FormText field='lastName' id='lastName' />
+
+              <FormSubmit>Add</FormSubmit>
+            </form>
+          )}
+        </Form>
+      </Card>
+    </StoryContainer>
+  ))
+  .add('Add Quote', () => (
+    <StoryContainer>
+      <Card>
+        <CardTitle>Add Quote</CardTitle>
+        <Form>
+          {formApi => (
+            <form>
+              <FormLabel htmlFor='body'>Quote</FormLabel>
+              <FormTextArea field='body' id='body' />
 
               <FormSubmit>Add</FormSubmit>
             </form>

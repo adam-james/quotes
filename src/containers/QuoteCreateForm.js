@@ -1,19 +1,29 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Form, Text } from 'react-form'
+import { Form } from 'react-form'
+import { Card, CardTitle } from '../components/card'
+import {
+  FormLabel,
+  FormSubmit,
+  FormTextArea
+} from '../components/form'
 
-const QuoteCreateForm = ({ onSubmit }) => (
-  <Form onSubmit={onSubmit}>
-    {formApi => (
-      <form onSubmit={formApi.submitForm}>
+const QuoteCreateForm = ({ firstName, lastName, onSubmit }) => (
+  <Card>
+    <CardTitle>Add Quote for { `${firstName} ${lastName}` }</CardTitle>
+    <Form onSubmit={onSubmit}>
+      {formApi => (
+        <form onSubmit={formApi.submitForm}>
 
-        <label htmlFor='body'>Quote</label>
-        <Text field='body' id='body' />
+          <FormLabel htmlFor='body'>Quote</FormLabel>
+          <FormTextArea field='body' id='body' />
 
-        <button type='submit'>Submit</button>
-      </form>
-    )}
-  </Form>
+          <FormSubmit>Add</FormSubmit>
+        </form>
+      )}
+    </Form>
+  </Card>
+
 )
 
 QuoteCreateForm.propTypes = {
