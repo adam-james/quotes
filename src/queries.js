@@ -1,5 +1,19 @@
 import gql from 'graphql-tag'
 
+export const RECENT_AUTHORS = gql`
+  {
+    authors: allAuthors (orderBy: createdAt_DESC, first: 5) {
+      id
+      firstName
+      lastName
+      createdAt
+      _quotesMeta {
+        count
+      }
+    }
+  }
+`
+
 export const SEARCH_AUTHORS = gql`
   query authors ($query: String!) {
     authors: allAuthors (filter: {

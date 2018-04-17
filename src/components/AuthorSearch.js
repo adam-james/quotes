@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import moment from 'moment'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { List, ListItem } from './List'
@@ -24,7 +25,17 @@ export const AuthorName = styled.div`
   text-align: left;
 `
 
-export const AuthorNumQuotes = styled.div`
+export const AuthorMeta = styled(
+  ({ className, createdAt, numQuotes, recent }) => (
+    <div className={className}>
+      {recent
+        ? 
+      `Added ${moment(createdAt).fromNow()}` 
+        :
+      `${numQuotes} quotes`}
+    </div>
+  )
+)`
   width: 50%;
   font-family: 'Lato', sans-serif;
   font-weight: 400;
@@ -35,13 +46,17 @@ export const AuthorNumQuotes = styled.div`
 `
 
 export const Author = styled(
-  ({ name, id, className, numQuotes }) => (
+  ({ name, id, className, numQuotes, recent, createdAt }) => (
     <Link
       to={`/authors/${id}`}
       className={className}
     >
       <AuthorName>{name}</AuthorName>
-      <AuthorNumQuotes>{numQuotes} quotes</AuthorNumQuotes>
+      <AuthorMeta
+        recent={recent}
+        createdAt={createdAt}
+        numQuotes={numQuotes}
+      />
     </Link>
   )
 )`
@@ -51,7 +66,7 @@ export const Author = styled(
   padding: 1em 2em;
 `
 
-export const AuthorList = ({ authors }) => (
+export const AuthorList = ({ authors, recent }) => (
   <List>
     {authors.map(author => (
       <ListItem key={author.id}>
@@ -59,6 +74,8 @@ export const AuthorList = ({ authors }) => (
           name={fullName(author)}
           id={author.id}
           numQuotes={author._quotesMeta.count}
+          recent={recent}
+          createdAt={author.createdAt}
         />
       </ListItem>
     ))}

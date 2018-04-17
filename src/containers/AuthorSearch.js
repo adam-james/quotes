@@ -7,18 +7,41 @@ import { Card, CardTitle } from '../components/card'
 import { SearchInput } from '../components/search'
 import { Spinner } from '../components/icons'
 import { AuthorList, SearchResults } from '../components/AuthorSearch'
+import { SectionTitle } from '../components/Layout'
+import RecentAuthorList from './RecentAuthorList'
+
+const Content = ({ authors, loading, query  }) => {
+  if (loading) {
+    return <Spinner />
+  }
+  if (authors.length === 0 && query.length === 0) {
+    return <RecentAuthorList />
+  }
+  return (
+    <section>
+      <SectionTitle>Authors</SectionTitle>
+      <AuthorList authors={authors} />
+    </section>
+  )
+}
+
+Content.propTypes = {
+  authors: PropTypes.array.isRequired,  
+  loading: PropTypes.bool,
+  query: PropTypes.string.isRequired
+}
 
 export class AuthorSearch extends React.Component {
   constructor (props) {
     super(props)
-    this.state = { authors: [], loading: false }
+    this.state = { authors: [], loading: false, query: '' }
     this.handleChange = this.handleChange.bind(this)
     this.fetchAuthors = debounce(this.fetchAuthors, 250).bind(this)
   }
 
   handleChange (e) {
     const { value: query } = e.target
-    this.setState({ loading: true })
+    this.setState({ loading: true, query })
     this.fetchAuthors(query)
   }
 
@@ -42,9 +65,7 @@ export class AuthorSearch extends React.Component {
           <SearchInput onChange={this.handleChange} />
           <SearchResults>{ this.state.authors.length } results</SearchResults>
         </Card>
-        {this.state.loading
-          ? <Spinner />
-          : <AuthorList authors={this.state.authors} />}
+        <Content {...this.state} />
       </section>
     )
   }
