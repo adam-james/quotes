@@ -34,7 +34,7 @@ class CreateQuote extends React.Component {
       query: GET_AUTHOR,
       data
     })
-  } 
+  }
 
   render () {
     return (

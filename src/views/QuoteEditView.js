@@ -5,7 +5,7 @@ import GetQuote from '../queries/GetQuote'
 import { Main } from '../components/Layout'
 import { Card, CardTitle } from '../components/card'
 import QuoteForm from '../containers/QuoteForm'
-import UpdateQuote from '../mutations/UpdateQuote';
+import UpdateQuote from '../mutations/UpdateQuote'
 
 export class QuoteEditView extends React.Component {
   constructor (props) {
@@ -65,7 +65,7 @@ const Wrapper = ({ history, match }) => {
 }
 
 Wrapper.propTypes = {
-  history: PropTypes.object.isRequired,  
+  history: PropTypes.object.isRequired,
   match: PropTypes.object.isRequired
 }
 

@@ -33,7 +33,7 @@ const QuoteForm = ({ onSubmit, body }) => (
 
 QuoteForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
-  body: PropTypes.string,
+  body: PropTypes.string
 }
 
 export default QuoteForm

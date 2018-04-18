@@ -61,7 +61,7 @@ const Wrapper = ({ match, history }) => {
 }
 
 Wrapper.propTypes = {
-  history: PropTypes.object.isRequired,  
+  history: PropTypes.object.isRequired,
   match: PropTypes.object.isRequired
 }
 
