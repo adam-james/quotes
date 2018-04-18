@@ -1,6 +1,6 @@
 import React from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
-import AuthorCreatePage from './pages/AuthorCreatePage'
+import AuthorCreateView from './views/AuthorCreateView'
 import AuthorListPage from './pages/AuthorListPage'
 import AuthorDetailView from './views/AuthorDetailView'
 import AuthorEditView from './views/AuthorEditView'
@@ -23,7 +23,7 @@ export default function Routes () {
           exact path="/authors/:authorId/add-quote"
           component={AuthorQuoteCreatePage}
         />
-        <Route path="/add-author" component={AuthorCreatePage} />
+        <Route path="/add-author" component={AuthorCreateView} />
         <Route exact path="/quotes/:id/edit" component={QuoteEditView} />
         <Route exact path="/quotes/:id/delete" component={QuoteDeleteView} />
       </div>
