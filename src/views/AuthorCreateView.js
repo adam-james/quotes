@@ -7,7 +7,7 @@ import { Main } from '../components/Layout'
 import { CREATE_AUTHOR } from '../queries'
 import AuthorForm from '../containers/AuthorForm'
 
-export class Page extends React.Component {
+export class AuthorCreateView extends React.Component {
   constructor (props) {
     super(props)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -29,11 +29,11 @@ export class Page extends React.Component {
   }
 }
 
-Page.propTypes = {
+AuthorCreateView.propTypes = {
   createAuthor: PropTypes.func.isRequired
 }
 
-class AuthorCreatePage extends React.Component {
+class Wrapper extends React.Component {
   constructor (props) {
     super(props)
     this.updateQuery = this.updateQuery.bind(this)
@@ -50,11 +50,11 @@ class AuthorCreatePage extends React.Component {
         update={this.updateQuery}
       >
         {(createAuthor) => (
-          <Page createAuthor={createAuthor} />
+          <AuthorCreateView createAuthor={createAuthor} />
         )}
       </Mutation>
     )
   }
 }
 
-export default withRouter(AuthorCreatePage)
+export default withRouter(Wrapper)
