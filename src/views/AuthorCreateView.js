@@ -2,10 +2,20 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { withRouter } from 'react-router-dom'
 import { Mutation } from 'react-apollo'
+import gql from 'graphql-tag'
 import { Card, CardTitle } from '../components/card'
 import { Main } from '../components/Layout'
-import { CREATE_AUTHOR } from '../queries'
 import AuthorForm from '../containers/AuthorForm'
+
+export const CREATE_AUTHOR = gql`
+  mutation createAuthor($firstName: String!, $lastName: String!) {
+    createAuthor(firstName: $firstName, lastName: $lastName) {
+      id
+      firstName
+      lastName
+    }
+  }
+`
 
 export class AuthorCreateView extends React.Component {
   constructor (props) {

@@ -5,7 +5,7 @@ import AuthorListView from './views/AuthorListView'
 import AuthorDetailView from './views/AuthorDetailView'
 import AuthorEditView from './views/AuthorEditView'
 import QuoteEditView from './views/QuoteEditView'
-import QuoteListPage from './pages/QuoteListPage'
+import QuoteListView from './views/QuoteListView'
 import QuoteDeleteView from './views/QuoteDeleteView'
 import AuthorQuoteCreateView from './views/AuthorQuoteCreateView'
 import App from './App'
@@ -15,7 +15,7 @@ export default function Routes () {
     <Router>
       <div>
         <Route path="/" component={App} />
-        <Route exact path="/" component={QuoteListPage} />
+        <Route exact path="/" component={QuoteListView} />
         <Route exact path="/authors" component={AuthorListView} />
         <Route exact path="/authors/:id" component={AuthorDetailView} />
         <Route exact path="/authors/:id/edit" component={AuthorEditView} />

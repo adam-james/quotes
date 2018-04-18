@@ -2,7 +2,7 @@ import React from 'react'
 import { Main, SectionTitle } from '../components/Layout'
 import QuoteList from '../containers/QuoteList'
 
-const QuoteListPage = () => (
+const QuoteListView = () => (
   <Main>
     <section>
       <SectionTitle>Recently Added Quotes</SectionTitle>
@@ -11,4 +11,4 @@ const QuoteListPage = () => (
   </Main>
 )
 
-export default QuoteListPage
+export default QuoteListView

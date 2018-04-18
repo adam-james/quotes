@@ -2,7 +2,6 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 import { Page, updateQuery } from './AuthorCreatePage'
-import { ALL_AUTHORS } from '../queries'
 
 describe('Page', () => {
   const testProps = () => ({

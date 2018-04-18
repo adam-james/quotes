@@ -1,6 +1,7 @@
 import React from 'react'
 import { Query } from 'react-apollo'
-import { MORE_QUOTES } from '../queries'
+import gql from 'graphql-tag'
+import handleQuery from '../queries/handleQuery'
 import { Spinner } from '../components/icons'
 import { Button } from '../components/Button'
 import {
@@ -8,6 +9,21 @@ import {
   QuoteListFooter,
   QuoteListList
 } from '../components/QuoteList'
+
+export const MORE_QUOTES = gql`
+  query quotes ($after: String) {
+    quotes: allQuotes (orderBy: createdAt_DESC, first: 10, after: $after) {
+      id
+      body
+      createdAt
+      author {
+        id
+        firstName
+        lastName
+      }
+    }
+  }
+`
 
 class QuoteListPaginator extends React.Component {
   constructor (props) {
@@ -89,24 +105,12 @@ const QuoteList = () => (
     variables={{ after: null }}
     fetchPolicy='network-only'
   >
-    {({ error, loading, data, fetchMore }) => {
-      if (error) {
-        return (
-          <p>Error</p>
-        )
-      }
-      if (loading) {
-        return (
-          <Spinner />
-        )
-      }
-      return (
-        <div>
-          <QuoteListList quotes={data.quotes} />
-          <QuoteListPaginator data={data} fetchMore={fetchMore} />
-        </div>
-      )
-    }}
+    {handleQuery(({ data, fetchMore }) => (
+      <div>
+        <QuoteListList quotes={data.quotes} />
+        <QuoteListPaginator data={data} fetchMore={fetchMore} />
+      </div>
+    ))}
   </Query>
 )
 
