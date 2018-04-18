@@ -12,7 +12,7 @@ const required = value => ({
   error: (!value) ? 'The field above is required.' : null
 })
 
-const QuoteForm = ({ onSubmit, quote }) => (
+const QuoteForm = ({ onSubmit, body }) => (
   <Form onSubmit={onSubmit}>
     {formApi => (
       <form onSubmit={formApi.submitForm}>
@@ -21,11 +21,11 @@ const QuoteForm = ({ onSubmit, quote }) => (
         <FormTextArea
           field='body' id='body'
           validate={required}
-          value={quote ? quote.body : ''}
+          defaultValue={body}
         />
         <FormError errors={formApi.errors} field='body' />
 
-        <FormSubmit>Add</FormSubmit>
+        <FormSubmit>Save</FormSubmit>
       </form>
     )}
   </Form>
@@ -33,9 +33,7 @@ const QuoteForm = ({ onSubmit, quote }) => (
 
 QuoteForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
-  quote: PropTypes.shape({
-    body: PropTypes.string.isRequired
-  })
+  body: PropTypes.string,
 }
 
 export default QuoteForm
