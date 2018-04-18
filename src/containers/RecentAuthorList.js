@@ -1,7 +1,7 @@
 import React from 'react'
 import { Query } from 'react-apollo'
 import gql from 'graphql-tag'
-import rendersQuery from './rendersQuery'
+import handleQuery from '../queries/handleQuery'
 import { SectionTitle } from '../components/Layout'
 import { AuthorList } from '../components/AuthorSearch'
 
@@ -19,7 +19,7 @@ export const RECENT_AUTHORS = gql`
   }
 `
 
-const render = rendersQuery(({ data }) => (
+const render = handleQuery(({ data }) => (
   <AuthorList authors={data.authors} recent />
 ))
 
