@@ -22,7 +22,7 @@ const AuthorForm = ({ firstName, lastName, onSubmit }) => (
           field='firstName'
           id='firstName'
           validate={required}
-          defaultValue={firstName || ''}
+          defaultValue={firstName}
         />
         <FormError errors={formApi.errors} field='firstName' />
 
@@ -31,7 +31,7 @@ const AuthorForm = ({ firstName, lastName, onSubmit }) => (
           field='lastName'
           id='lastName'
           validate={required}
-          defaultValue={lastName || ''}
+          defaultValue={lastName}
         />
         <FormError errors={formApi.errors} field='lastName' />
 
@@ -42,8 +42,8 @@ const AuthorForm = ({ firstName, lastName, onSubmit }) => (
 )
 
 AuthorForm.propTypes = {
-  firstName: PropTypes.string.isRequired,
-  lastName: PropTypes.string.isRequired,
+  firstName: PropTypes.string,
+  lastName: PropTypes.string,
   onSubmit: PropTypes.func.isRequired
 }
 
