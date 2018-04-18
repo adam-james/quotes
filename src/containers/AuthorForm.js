@@ -12,7 +12,7 @@ const required = value => ({
   error: (! value) ? 'The field above is required.' : null
 })
 
-const AuthorForm = ({ author, onSubmit }) => (
+const AuthorForm = ({ firstName, lastName, onSubmit }) => (
   <Form onSubmit={onSubmit}>
     {formApi => (
       <form onSubmit={formApi.submitForm}>
@@ -22,7 +22,7 @@ const AuthorForm = ({ author, onSubmit }) => (
           field='firstName'
           id='firstName'
           validate={required}
-          value={author ? author.firstName : ''}
+          defaultValue={firstName || ''}
         />
         <FormError errors={formApi.errors} field='firstName' />          
 
@@ -31,7 +31,7 @@ const AuthorForm = ({ author, onSubmit }) => (
           field='lastName'
           id='lastName'
           validate={required}
-          value={author ? author.lastName : ''}
+          defaultValue={lastName || ''}
         />
         <FormError errors={formApi.errors} field='lastName' />          
 
@@ -42,10 +42,8 @@ const AuthorForm = ({ author, onSubmit }) => (
 )
 
 AuthorForm.propTypes = {
-  author: PropTypes.shape({
-    firstName: PropTypes.string.isRequired,
-    lastName: PropTypes.string.isRequired
-  }),
+  firstName: PropTypes.string.isRequired,
+  lastName: PropTypes.string.isRequired,
   onSubmit: PropTypes.func.isRequired
 }
 
