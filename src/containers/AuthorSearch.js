@@ -2,13 +2,34 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { ApolloConsumer } from 'react-apollo'
 import debounce from 'lodash/debounce'
-import { SEARCH_AUTHORS } from '../queries'
+import gql from 'graphql-tag'
 import { Card, CardTitle } from '../components/card'
 import { SearchInput } from '../components/search'
 import { Spinner } from '../components/icons'
 import { AuthorList, SearchResults } from '../components/AuthorSearch'
 import { SectionTitle } from '../components/Layout'
 import RecentAuthorList from './RecentAuthorList'
+
+export const SEARCH_AUTHORS = gql`
+  query authors ($first: String!, $last: String) {
+    authors: allAuthors (filter:{
+      OR:[
+        { firstName_contains: $first },
+        { lastName_contains: $first },
+        { firstName_contains: $last },
+        { lastName_contains: $last }
+      ]
+    }) {
+      id
+      firstName
+      lastName
+      createdAt
+      _quotesMeta {
+        count
+      }
+    }
+  }
+`
 
 const Content = ({ authors, loading, query }) => {
   if (loading) {
