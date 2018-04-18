@@ -35,7 +35,7 @@ const AuthorForm = ({ firstName, lastName, onSubmit }) => (
         />
         <FormError errors={formApi.errors} field='lastName' />
 
-        <FormSubmit>Add</FormSubmit>
+        <FormSubmit>Submit</FormSubmit>
       </form>
     )}
   </Form>
