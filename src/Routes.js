@@ -6,6 +6,7 @@ import AuthorDetailView from './views/AuthorDetailView'
 import AuthorEditView from './views/AuthorEditView'
 import QuoteEditView from './views/QuoteEditView'
 import QuoteListPage from './pages/QuoteListPage'
+import QuoteDeleteView from './views/QuoteDeleteView'
 import AuthorQuoteCreatePage from './pages/AuthorQuoteCreatePage'
 import App from './App'
 
@@ -24,6 +25,7 @@ export default function Routes () {
         />
         <Route path="/add-author" component={AuthorCreatePage} />
         <Route exact path="/quotes/:id/edit" component={QuoteEditView} />
+        <Route exact path="/quotes/:id/delete" component={QuoteDeleteView} />
       </div>
     </Router>
   )

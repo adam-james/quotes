@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { withRouter } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import GetQuote from '../queries/GetQuote'
 import { Main } from '../components/Layout'
 import { Card, CardTitle } from '../components/card'
@@ -25,6 +25,9 @@ export class QuoteEditView extends React.Component {
         <Card>
           <CardTitle>Edit Quote</CardTitle>
           <QuoteForm {...this.props.quote} onSubmit={this.handleSubmit} />
+        </Card>
+        <Card>
+          <Link to={`/quotes/${this.props.quote.id}/delete`}>Delete Quote</Link>
         </Card>
       </Main>
     )
