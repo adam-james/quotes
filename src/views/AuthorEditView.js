@@ -15,11 +15,11 @@ export class AuthorEditView extends React.Component {
 
   handleSubmit ({ firstName, lastName }) {
     const { id } = this.props.author
-    this.props.updateAuthor({ variables: { id, firstName, lastName }})
+    this.props.updateAuthor({ variables: { id, firstName, lastName } })
     this.props.history.push(`/authors/${id}`)
   }
 
-  render () {    
+  render () {
     return (
       <Main>
         <Card>
@@ -35,7 +35,7 @@ AuthorEditView.propTypes = {
   author: PropTypes.shape({
     firstName: PropTypes.string.isRequired,
     lastName: PropTypes.string.isRequired,
-    id: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired
   }).isRequired,
   updateAuthor: PropTypes.func.isRequired
 }

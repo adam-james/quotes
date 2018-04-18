@@ -9,7 +9,7 @@ import {
 } from '../components/form'
 
 const required = value => ({
-  error: (! value) ? 'The field above is required.' : null
+  error: (!value) ? 'The field above is required.' : null
 })
 
 const QuoteForm = ({ onSubmit, quote }) => (

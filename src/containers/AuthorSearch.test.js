@@ -1,3 +1,4 @@
+/* global describe, expect, it */
 import { splitQuery } from './AuthorSearch'
 
 describe('splitQuery', () => {

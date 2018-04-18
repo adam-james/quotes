@@ -16,7 +16,7 @@ export const AuthorDetailView = ({ author }) => (
       numQuotes={author.quotes.length}
     />
     <AuthorQuotes quotes={author.quotes} />
-  </Main> 
+  </Main>
 )
 
 AuthorDetailView.propTypes = {

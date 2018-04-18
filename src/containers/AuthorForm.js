@@ -9,7 +9,7 @@ import {
 } from '../components/form'
 
 const required = value => ({
-  error: (! value) ? 'The field above is required.' : null
+  error: (!value) ? 'The field above is required.' : null
 })
 
 const AuthorForm = ({ firstName, lastName, onSubmit }) => (
@@ -24,7 +24,7 @@ const AuthorForm = ({ firstName, lastName, onSubmit }) => (
           validate={required}
           defaultValue={firstName || ''}
         />
-        <FormError errors={formApi.errors} field='firstName' />          
+        <FormError errors={formApi.errors} field='firstName' />
 
         <FormLabel htmlFor='lastName'>Last Name</FormLabel>
         <FormText
@@ -33,7 +33,7 @@ const AuthorForm = ({ firstName, lastName, onSubmit }) => (
           validate={required}
           defaultValue={lastName || ''}
         />
-        <FormError errors={formApi.errors} field='lastName' />          
+        <FormError errors={formApi.errors} field='lastName' />
 
         <FormSubmit>Add</FormSubmit>
       </form>
