@@ -27,3 +27,11 @@ export const CardInfo = styled.p`
   letter-spacing: 0.25px;
   text-align: center;
 `
+
+export const CardActions = styled.div`
+  padding-top: 1em;
+  display: flex;
+  justify-content: space-around;
+  max-width: 30%;
+  margin: 0 auto;
+`

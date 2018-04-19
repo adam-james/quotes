@@ -1,11 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link, withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import GetQuote from '../queries/GetQuote'
 import { Main } from '../components/Layout'
-import { Card, CardTitle } from '../components/card'
+import { Card, CardActions, CardTitle } from '../components/card'
 import QuoteForm from '../containers/QuoteForm'
 import UpdateQuote from '../mutations/UpdateQuote'
+import { WarningLink } from '../components/Button'
 
 export class QuoteEditView extends React.Component {
   constructor (props) {
@@ -27,7 +28,12 @@ export class QuoteEditView extends React.Component {
           <QuoteForm {...this.props.quote} onSubmit={this.handleSubmit} />
         </Card>
         <Card>
-          <Link to={`/quotes/${this.props.quote.id}/delete`}>Delete Quote</Link>
+          <CardTitle>Actions</CardTitle>
+          <CardActions style={{ paddingTop: '0px' }}>
+            <WarningLink to={`/quotes/${this.props.quote.id}/delete`}>
+              Delete Quote
+            </WarningLink>
+          </CardActions>
         </Card>
       </Main>
     )

@@ -27,3 +27,34 @@ export const LinkButton = styled(Link)`
   box-sizing: border-box;
   margin-top: 20px;
 `
+
+const smallButton = () => `
+  height: 48px;
+  display: inline-block;
+  padding: 0.8em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-size: 16px;
+  font-family: 'Lato', sans-serif;
+  border-radius: 2px;
+  cursor: pointer;
+`
+
+export const SecondaryLink = styled(Link)`
+  ${smallButton()}
+  color: #455A64;
+  border: 1px solid #455A64;
+`
+
+export const WarningLink = styled(Link)`
+  ${smallButton()}
+  color: red;
+  border: 1px solid red;
+`
+
+export const WarningButton = styled.button`
+  ${smallButton()}
+  color: #fff;
+  border: none;
+  background-color: red;
+`
