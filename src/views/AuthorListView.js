@@ -8,7 +8,7 @@ const AuthorListView = () => (
   <Main>
     <Card>
       <CardTitle style={{ margin: '0' }}>
-        To add a quote, first find or create an author.
+        To add a quote, first find or add an author.
       </CardTitle>
     </Card>
     <LinkButton to='add-author'>+ Add Author</LinkButton>
