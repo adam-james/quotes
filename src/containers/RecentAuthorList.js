@@ -6,7 +6,7 @@ import { SectionTitle } from '../components/Layout'
 import { AuthorList } from '../components/AuthorSearch'
 
 export const RECENT_AUTHORS = gql`
-  {
+  query RecentAuthors {
     authors: allAuthors (orderBy: createdAt_DESC, first: 5) {
       id
       firstName

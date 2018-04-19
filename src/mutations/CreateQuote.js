@@ -5,7 +5,7 @@ import gql from 'graphql-tag'
 import { GET_AUTHOR } from '../queries/GetAuthor'
 
 const CREATE_QUOTE = gql`
-  mutation createQuote($authorId: ID!, $body: String!) {
+  mutation CreateQuote($authorId: ID!, $body: String!) {
     createQuote(authorId: $authorId, body: $body) {
       id
       body

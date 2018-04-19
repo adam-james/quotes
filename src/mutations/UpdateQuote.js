@@ -5,7 +5,7 @@ import gql from 'graphql-tag'
 import { GET_QUOTE } from '../queries/GetQuote'
 
 export const UPDATE_QUOTE = gql`
-  mutation updateQuote($id: ID!, $body: String) {
+  mutation UpdateQuote($id: ID!, $body: String) {
     updateQuote(id: $id, body: $body) {
       id
       body

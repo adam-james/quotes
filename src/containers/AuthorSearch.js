@@ -11,7 +11,7 @@ import { SectionTitle } from '../components/Layout'
 import RecentAuthorList from './RecentAuthorList'
 
 export const SEARCH_AUTHORS = gql`
-  query authors ($first: String!, $last: String) {
+  query SearchAuthors ($first: String!, $last: String) {
     authors: allAuthors (filter:{
       OR:[
         { firstName_contains: $first },

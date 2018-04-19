@@ -5,7 +5,7 @@ import gql from 'graphql-tag'
 import { GET_AUTHOR } from '../queries/GetAuthor'
 
 export const UPDATE_AUTHOR = gql`
-  mutation updateAuthor($id: ID!, $firstName: String, $lastName: String) {
+  mutation UpdateAuthor($id: ID!, $firstName: String, $lastName: String) {
     updateAuthor(id: $id, firstName: $firstName, lastName: $lastName) {
       id
       firstName

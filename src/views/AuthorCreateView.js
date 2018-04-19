@@ -8,7 +8,7 @@ import { Main } from '../components/Layout'
 import AuthorForm from '../containers/AuthorForm'
 
 export const CREATE_AUTHOR = gql`
-  mutation createAuthor($firstName: String!, $lastName: String!) {
+  mutation CreateAuthor ($firstName: String!, $lastName: String!) {
     createAuthor(firstName: $firstName, lastName: $lastName) {
       id
       firstName

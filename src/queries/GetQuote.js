@@ -5,7 +5,7 @@ import gql from 'graphql-tag'
 import handleQuery from './handleQuery'
 
 export const GET_QUOTE = gql`
-  query getQuote($id: ID!) {
+  query GetQuote ($id: ID!) {
     quote: Quote(id: $id) {
       id
       body

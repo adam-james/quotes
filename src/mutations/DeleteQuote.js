@@ -5,7 +5,7 @@ import gql from 'graphql-tag'
 import { GET_AUTHOR } from '../queries/GetAuthor'
 
 export const DELETE_QUOTE = gql`
-  mutation deleteQuote ($id: ID!) {
+  mutation DeleteQuote ($id: ID!) {
     deleteQuote (id: $id) {
       id
       body

@@ -11,7 +11,7 @@ import {
 } from '../components/QuoteList'
 
 export const MORE_QUOTES = gql`
-  query quotes ($after: String) {
+  query MoreQuotes ($after: String) {
     quotes: allQuotes (orderBy: createdAt_DESC, first: 10, after: $after) {
       id
       body

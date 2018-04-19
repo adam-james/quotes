@@ -5,7 +5,7 @@ import gql from 'graphql-tag'
 import handleQuery from './handleQuery'
 
 export const GET_AUTHOR = gql`
-  query Author($id: ID!) {
+  query GetAuthor ($id: ID!) {
     author: Author(id: $id) {
       id
       firstName
